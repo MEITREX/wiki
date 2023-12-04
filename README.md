@@ -1,7 +1,7 @@
 # Docs
 
-This repository contains all documentation of the GITS - Gamified Intelligent Tutoring System Enpro number 2.
-The documentation uses read the docs and is also hosted by them on [read the docs GITS](https://gits-enpro.readthedocs.io/en/latest/).
+This repository contains all documentation of the MEITREX - Modular Embedded Intelligent Tutoring and Remote Education eXperience.
+The documentation uses read the docs and is also hosted by them on [read the docs MEITREX](https://gits-enpro.readthedocs.io/en/latest/).
 
 ## Structure
 
