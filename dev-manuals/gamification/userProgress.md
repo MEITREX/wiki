@@ -11,7 +11,7 @@ Storing the progress data serves the following purposes:
 
 1. Display in frontend which contents and chapters a user has already completed, which are still open and which contents
    are next.
-2. Reward score calculation: The IT-Rex has different categories of reward scores, where one is about learning new
+2. Reward score calculation: The MEITREX has different categories of reward scores, where one is about learning new
    content and one is about repeating content. The progress data is required to determine the category of a reward
    score and possibly to calculate the score. If, for example, a content was never learned before, it is considered new
    content for the user and the user gets a reward score for learning new content. If content has been learned before, the

@@ -24,10 +24,10 @@ This section describes how the reward scores are increased and decreased dependi
 
 ### Health
 
-> Health shows the current learning progress of a student. If the IT-REX is doing poorly, this is the indicator that the
+> Health shows the current learning progress of a student. If the MEITREX is doing poorly, this is the indicator that the
 > student is lagging behind
 
-<small><i>cited from the IT-REX paper</i></small>
+<small><i>cited from previous IT-REX paper</i></small>
 
 The health score represents how well the user is up-to-date with the content.
 It is decreased if the user is behind with the content and increased whenever the user learns new content that is due.
@@ -83,11 +83,11 @@ health (100 - 70 / 2) when he progresses through one content. If he progresses t
 
 ### Fitness
 
-> Fitness shows how well a student repeats previous chapters. For example, if the IT-REX is limp, the student has to
+> Fitness shows how well a student repeats previous chapters. For example, if the MEITREX is limp, the student has to
 > repeat old chapters and “train” so that the fitness increases. Furthermore, tests that the student did not solve
 > correctly are repeated more frequently
 
-<small><i>cited from the IT-REX paper</i></small>
+<small><i>cited from previous IT-REX paper</i></small>
 
 The fitness score represents how well the user repeats old content.
 It is calculated similarly to the health score but only considers content that is due for repetition
@@ -170,11 +170,11 @@ Examples:
 
 ### Growth
 
-> Growth serves as a progress bar, so the students know how much of the course is still ahead of them. The IT-REX
+> Growth serves as a progress bar, so the students know how much of the course is still ahead of them. The MEITREX
 > receives food with each new concept learned. Therefore, it grows and moves up in levels. An upper limit for the levels
 > indicates the end of the course that the student is aiming for.
 
-<small><i>cited from the IT-REX paper</i></small>
+<small><i>cited from previous IT-REX paper</i></small>
 
 ![Growth](images/growth.PNG)
 
@@ -192,12 +192,12 @@ The growth score can not decrease.
 ### Strength
 
 > Strength is used to enforce a certain level of interaction between the students and aims at motivating them to
-> participate regularly in REX-Duels: By participating in REX-Duels, the IT-REX gets strength points that depict how a
-> student’s knowledge level is compared to others. While both participants increase their IT-REX’ strength points in
+> participate regularly in REX-Duels: By participating in REX-Duels, the MEITREX gets strength points that depict how a
+> student’s knowledge level is compared to others. While both participants increase their MEITREX’ strength points in
 > a REX-Duel, the winner will gain significantly more strength points which aims at motivating students to prepare for
 > REX-Duels by learning regularly
 
-<small><i>cited from the IT-REX paper</i></small>
+<small><i>cited from previous IT-REX paper</i></small>
 
 ![Strength](images/strength.PNG)
 
@@ -211,7 +211,7 @@ This score will also not decrease.
 
 > Power shows the composite value of the other properties so that a ranking of students can be created.
 
-<small><i>cited from the IT-REX paper</i></small>
+<small><i>cited from previous IT-REX paper</i></small>
 
 ![Power](images/power.PNG)
 

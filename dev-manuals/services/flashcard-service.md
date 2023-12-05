@@ -6,7 +6,7 @@ Unlike their physical counterparts, flashcards provided by this service are less
 Users can further customize their flashcards by adding some additional metadata to the sides of a flashcard. Flashcardsides can be labeled as 'questions' and/or 'answers'.
 This allows for flashcards to be created with designated 'question' and 'answer' fields but also allows for approaches where all flashcard sides can be used as both 'questions' and 'answers'.
 
-A more technical description of the flashcard service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/IT-REX-Platform/flashcard_service#readme).
+A more technical description of the flashcard service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/MEITREX/flashcard_service#readme).
 
 ## Tracking a user's progress
 This service also provides a way to track and update a user's progress for each flashcard in a flashcard set. Our GraphQL endpoint is based on the assumption of a user self-assessing the correctness which is why the endpoint only expects to receive the identifier of the flashcard and a boolean value for the correctness of the answer.

@@ -11,11 +11,11 @@ We disabled that rule.
 
 ## How to use sonarqube
 
-The Sonarqube can be reached under: https://sonarcloud.io/organizations/it-rex-platform/projects
+The Sonarqube can be reached under: https://sonarcloud.io/organizations/meitrex/projects
 
 Here you can see all the services that have been added already.
 To add a new Service click on "Analyze new project". 
-The Organization "IT-REX" should be selected already, if you logged in via GitHub.
+The Organization "MEITREX" should be selected already, if you logged in via GitHub.
 Select the repository you want to add and confirm by clicking "Set Up"
 ![](/images/sonarqube-new-project.png)
 

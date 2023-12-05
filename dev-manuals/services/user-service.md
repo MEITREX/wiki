@@ -4,4 +4,4 @@ This service acts internally (in our system) as a graphQL endpoint extension for
 
 System-wide permissions (e.g. ability to create new courses) are not handled by this service. These are instead managed by [Keycloak](../authentication/keycloak.md).
 
-A more technical description of the user service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/IT-REX-Platform/user_service#readme).
+A more technical description of the user service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/MEITREX/user_service#readme).

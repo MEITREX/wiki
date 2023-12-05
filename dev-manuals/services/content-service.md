@@ -5,7 +5,7 @@ The core responsibility of the content service is handling all operations relate
 Next to creating, modifying, and deleting content, this service also provides ways of structuring content and tracking the progress of users on content. The content entities stored in this service represent an abstraction of actual content. This means no actual data such as media files can be found in this service. Rather content entities in this service reference the actual content located in other services.
 Content can be structured by adding them into stages, which can be ordered in sections. A [chapter](./course-service.md) can contain one or multiple sections. For further information on how and for what these sections and stages are used, we recommend reading our concept on [non-linear curriculum](../gamification/nonlinear-curriculum.md).
 
-A more technical description of the content service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/IT-REX-Platform/content_service#readme).
+A more technical description of the content service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/MEITREX/content_service#readme).
 
 ## Content types
 Currently, our system supports two different types of content: 

@@ -3,7 +3,7 @@
 Quizzes are one type of assessment content a user can consume while being part of a course.
 The quiz service stores all quizzes and also takes care of any creation, modification and deletion of quizzes. This service can also evaluate and provide feedback for a user's progress for each quiz.
 
-A more technical description of the flashcard service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/IT-REX-Platform/quiz_service#readme).
+A more technical description of the flashcard service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/MEITREX/quiz_service#readme).
 
 ## Quiz types
 Currently, the quiz service provides support for 6 different types of quizzes:

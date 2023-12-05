@@ -11,12 +11,12 @@ then a cloze question and then a self-assessment question.
 
 The quiz has a list of questions and a threshold.
 The threshold is the number of questions the user has to answer correctly to pass the quiz.
-See also the [API docs](https://github.com/IT-REX-Platform/quiz_service/blob/main/api.md#question) 
+See also the [API docs](https://github.com/MEITREX/quiz_service/blob/main/api.md#question) 
 
 ### Question interface
 
 The questions are generic superclass of all question types.
-[See API docs](https://github.com/IT-REX-Platform/quiz_service/blob/main/api.md#question).
+[See API docs](https://github.com/MEITREX/quiz_service/blob/main/api.md#question).
 
 ### Content type
 
@@ -31,5 +31,5 @@ This has the disadvantage that the user can't continue a quiz where they left of
 Also, they could technically stop the quiz if they see that they are going to fail and start it again.
 However, we start with the simpler approach and see if this is a problem in the future.
 
-To log that a quiz is completed, we provide [a graphQL mutation](https://github.com/IT-REX-Platform/quiz_service/blob/main/api.md#mutation).
+To log that a quiz is completed, we provide [a graphQL mutation](https://github.com/MEITREX/quiz_service/blob/main/api.md#mutation).
 

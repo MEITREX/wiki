@@ -22,9 +22,9 @@ Keel serves as our CI tool, automating the update process for our Kubernetes res
 
 All services are exposed through an Nginx ingress that is presumed to already exist in the target cluster. This ingress handles routing and SSL termination, providing a unified access point to various services. Currently, self-signed certs are used due to the difficulty of using Let's Encrypt without a public endpoint. While this would be possible using DNS validation, this is complex to setup and requires a supported DNS provider.
 
-### it-rex.ch
+### meitrex.de
 
-We own the domain `it-rex.ch`, which is currently only used for exposing the Minio service. This is a workaround to the cluster's limitation of having a single DNS entry, `orange.informatik.uni-stuttgart.de`. Minio requires its own subdomain, making this arrangement necessary. The domain is owned and managed by Valentin (GitHub: v-morlock). It could also be used to expose the whole system under a nicer domain and possibly enable obtaining trusted SSL certs.
+We own the domain `meitrex.de`, which is currently only used for exposing the Minio service. This is a workaround to the cluster's limitation of having a single DNS entry, `orange.informatik.uni-stuttgart.de`. Minio requires its own subdomain, making this arrangement necessary. The domain is owned and managed by Valentin (GitHub: v-morlock). It could also be used to expose the whole system under a nicer domain and possibly enable obtaining trusted SSL certs.
 
 ## Repository Structure
 

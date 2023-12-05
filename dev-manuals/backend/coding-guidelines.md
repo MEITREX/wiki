@@ -16,7 +16,7 @@ This package structure is based on multiple sources of best practices in Spring 
   - *service*
   - *validation*
   
-The detailed package structure is documented [here](https://github.com/IT-REX-Platform/template-microservice).
+The detailed package structure is documented [here](https://github.com/MEITREX/template_microservice).
 
 ## Style Guide
 

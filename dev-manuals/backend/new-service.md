@@ -10,7 +10,7 @@ Change the License to MIT.
 The following files need to be changed:
 
 - Settings.gradle -> change the "rootProject.name" to the servicename
-- Build.gradle -> under sonarqube change the property "sonar.projectKey" to "IT-REX-Platform_<servicename>"
+- Build.gradle -> under sonarqube change the property "sonar.projectKey" to "MEITREX_<servicename>"
 
 - Change the name of the template package to the name of the service
 - Remove the package-info.java files in the src/main/java folder (or update with the microservice specific information)

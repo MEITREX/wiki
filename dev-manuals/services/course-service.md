@@ -17,4 +17,4 @@ A 'Tutor' will then be able to view these assignments and provide feedback to th
 The 'Administrator' role is designated for lecturers and teaching assistance and comes with all permissions for the course. With this role new Content such as flashcards, and quizzes can created, modified, and removed. A lecturer can upload lecture slides and videos, and completely design and organize the course, its underlying chapters and its content with this role.
 
 
-A more technical description of the course service and its endpoints can be found in our [Github Repository README](https://github.com/IT-REX-Platform/course_service#readme).
+A more technical description of the course service and its endpoints can be found in our [Github Repository README](https://github.com/MEITREX/course_service#readme).

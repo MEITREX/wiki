@@ -1,6 +1,6 @@
 # Reward service
 In our application, we can find two different scoring systems: The reward system and the [skill level system](./skill-level-service.md).
-This service handles the reward system of IT-REX.
+This service handles the reward system of MEITREX.
 Depending on solved quizzes, watched lectures, repetition of content, flashcard learning, or any other activity of a student on the platform, this service calculates reward scores and saves them in 5 different tables. Current reward scores are: 
 - Growth
 - Health 
@@ -19,4 +19,4 @@ A user progress event is triggered each time a user progresses content. This is 
 To perform any result score calculations for a user the reward service needs to be provided with user progress information. For this, it will request all chapters from the [course service](./course-service.md) for a course and after receiving the required information, request all content with user progress of the user for all found chapters from the content service. This is because reward scores are calculated for an entire course.
 
 
-A more technical description of the reward service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/IT-REX-Platform/reward_service#readme).
+A more technical description of the reward service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/MEITREX/reward_service#readme).
