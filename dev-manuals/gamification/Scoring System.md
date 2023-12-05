@@ -2,7 +2,7 @@
 
 ## Two System Approach
 
-GITS has two scoring systems: The skill level system and the reward system. The skill level system is used to determine
+MEITREX has two scoring systems: The skill level system and the reward system. The skill level system is used to determine
 how well a user knows a piece of content.
 The reward system is used to motivate the user to learn new content and repeat old content.
 
@@ -27,7 +27,7 @@ This section describes how the reward scores are increased and decreased dependi
 > Health shows the current learning progress of a student. If the IT-REX is doing poorly, this is the indicator that the
 > student is lagging behind
 
-<small><i>cited from the GITS paper</i></small>
+<small><i>cited from the IT-REX paper</i></small>
 
 The health score represents how well the user is up-to-date with the content.
 It is decreased if the user is behind with the content and increased whenever the user learns new content that is due.
@@ -87,7 +87,7 @@ health (100 - 70 / 2) when he progresses through one content. If he progresses t
 > repeat old chapters and “train” so that the fitness increases. Furthermore, tests that the student did not solve
 > correctly are repeated more frequently
 
-<small><i>cited from the GITS paper</i></small>
+<small><i>cited from the IT-REX paper</i></small>
 
 The fitness score represents how well the user repeats old content.
 It is calculated similarly to the health score but only considers content that is due for repetition
@@ -174,7 +174,7 @@ Examples:
 > receives food with each new concept learned. Therefore, it grows and moves up in levels. An upper limit for the levels
 > indicates the end of the course that the student is aiming for.
 
-<small><i>cited from the GITS paper</i></small>
+<small><i>cited from the IT-REX paper</i></small>
 
 ![Growth](images/growth.PNG)
 
@@ -197,7 +197,7 @@ The growth score can not decrease.
 > a REX-Duel, the winner will gain significantly more strength points which aims at motivating students to prepare for
 > REX-Duels by learning regularly
 
-<small><i>cited from the GITS paper</i></small>
+<small><i>cited from the IT-REX paper</i></small>
 
 ![Strength](images/strength.PNG)
 
@@ -211,7 +211,7 @@ This score will also not decrease.
 
 > Power shows the composite value of the other properties so that a ranking of students can be created.
 
-<small><i>cited from the GITS paper</i></small>
+<small><i>cited from the IT-REX paper</i></small>
 
 ![Power](images/power.PNG)
 

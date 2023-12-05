@@ -2,7 +2,7 @@
 
 Spaced repetition is a learning technique that is used to improve long-term retention of information.
 
-How does it work in GITS?
+How does it work in MEITREX?
 
 - Each content that the user progressed at least once has a **date when it was last learned**.
 - Additionally, we assign a **learning interval** to each content.

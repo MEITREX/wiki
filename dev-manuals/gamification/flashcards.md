@@ -1,6 +1,6 @@
 # Flashcard concepts
 
-This document describes how flashcards are implemented in the GITS.
+This document describes how flashcards are implemented in the MEITREX.
 
 ## A single flashcard
 

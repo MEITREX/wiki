@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'GITS - Gamified Intelligent Tutoring System'
+project = 'MEITREX - Modular Embedded Intelligent Tutoring and Remote Education eXperience'
 copyright = '2023, Universität Stuttgart'
 author = 'Universität Stuttgart'
 

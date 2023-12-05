@@ -18,7 +18,7 @@ Not implemented yet.
 The user data originally stored in the JWT token (user id, name, roles etc.) is extracted by the gateway and sent to the
 services in the form of a JSON string in the HTTP header "CurrentUser".
 
-Services can use the static `RequestHeaderUserProcessor.process()` method (part of the *gits-common* library) in a
+Services can use the static `RequestHeaderUserProcessor.process()` method (part of the *meitrex-common* library) in a
 `WebGraphQlInterceptor` to deserialize the JSON into a `LoggedInUser` object which is automatically injected into the
 service's graphql context under the key `currentUser`.
 

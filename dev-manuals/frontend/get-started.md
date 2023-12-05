@@ -54,7 +54,7 @@ pnpm is a fast, disk space efficient package manager. It is faster than alternat
 
 To start working on the frontend part of the project you need to clone the repository and install all dependencies. To do so, please follow the steps below:
 
-1. Clone the repository (HTTPS: `git clone https://github.com/IT-REX-Platform/gits-frontend.git` or SSH: `git@github.com:IT-REX-Platform/gits-frontend.git`)
+1. Clone the repository (HTTPS: `git clone https://github.com/MEITREX/frontend.git` or SSH: `git@github.com:MEITREX/frontend.git`)
 2. Install all dependencies with `pnpm install`
 3. Create all generated GraphQL files with `pnpm relay`
 4. Run the project with `pnpm dev`

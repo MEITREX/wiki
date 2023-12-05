@@ -1,6 +1,6 @@
 # Quizzes
 
-In GITS, we have multiple types of quizzes, see [here](https://gits-enpro.readthedocs.io/en/latest/dev-manuals/services/quiz-service.html).
+In MEITREX, we have multiple types of quizzes, see [here](https://meitrex.readthedocs.io/en/latest/dev-manuals/services/quiz-service.html).
 
 However, a single quiz will not have just one type of question. For example, a quiz may have multiple choice questions,
 then a cloze question and then a self-assessment question.

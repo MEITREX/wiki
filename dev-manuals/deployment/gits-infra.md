@@ -1,8 +1,8 @@
-# GITS Infrastructure
+# MEITREX Infrastructure
 
 ## Overview
 
-The `gits-infra` repository contains the Terraform scripts responsible for orchestrating the deployment of the GITS Platform on a Kubernetes cluster.
+The `infrastructure` repository contains the Terraform scripts responsible for orchestrating the deployment of the MEITREX Platform on a Kubernetes cluster.
 
 ## Deployment Approach
 
@@ -12,7 +12,7 @@ We employ Terraform as the central tool for infrastructure-as-code, managing eve
 
 ### Resource Deployment
 
-Our infrastructure consists of a mixture of "raw" Kubernetes resources and Helm-based deployments. All GITS-services are deployed using raw Kubernetes manifests while we use Helm for standard resources like PostgreSQL databases, Keycloak and Minio to simplify management.
+Our infrastructure consists of a mixture of "raw" Kubernetes resources and Helm-based deployments. All MEITREX-services are deployed using raw Kubernetes manifests while we use Helm for standard resources like PostgreSQL databases, Keycloak and Minio to simplify management.
 
 ### Continuous Integration with Keel
 
@@ -38,7 +38,7 @@ We own the domain `it-rex.ch`, which is currently only used for exposing the Min
 
 ### Frontend Deployment
 
-In `frontend.tf`, the GITS frontend is deployed as a Kubernetes Deployment and exposed through a Kubernetes Service. The deployment specifies environment variables for OAuth and backend URL configurations and includes a liveness probe to monitor the health of the frontend service.
+In `frontend.tf`, the MEITREX frontend is deployed as a Kubernetes Deployment and exposed through a Kubernetes Service. The deployment specifies environment variables for OAuth and backend URL configurations and includes a liveness probe to monitor the health of the frontend service.
 
 ### Backend Services Deployment
 

@@ -8,7 +8,7 @@ For structuring our microservices we had three options
 Decision: 
 - **Separate repositories** for developement
 - **Parent repository** with sub-modules to enable easy startup of all services with Docker.
-  - [GITS backend](https://github.com/IT-REX-Platform/gits_backend) 
+  - [MEITREX backend](https://github.com/MEITREX/backend) 
 
 We decided to use separate repositories for the front-end and each microservice for the following reasons:
 
@@ -24,5 +24,5 @@ We decided to use separate repositories for the front-end and each microservice 
 
 ## Shared code
 
-- [git-common](https://github.com/IT-REX-Platform/gits-common) contains utility classes that are used in multiple microservices.
-- [git-common-test](https://github.com/IT-REX-Platform/gits-common-test), similarly, contains utility classes but for testing.
+- [meitrex-common](https://github.com/MEITREX/common) contains utility classes that are used in multiple microservices.
+- [meitrex-common-test](https://github.com/MEITREX/common_test), similarly, contains utility classes but for testing.

@@ -3,7 +3,7 @@ To ensure our deployed services are running properly Kubernetes allows for [prob
 In our deployment, we make use of the liveness and the readiness probes. 
 
 ## Enabling Probing for a service
-To enable probing for a service, changes to the deployment file of the service in [gits-infra](https://github.com/IT-REX-Platform/gits-infra) and the application settings (if the service is a spring boot application) need to be performed.
+To enable probing for a service, changes to the deployment file of the service in [infrastructure](https://github.com/MEITREX/infrastructure) and the application settings (if the service is a spring boot application) need to be performed.
 
 ### Enabling Probing in Spring Boot applications
 Spring offers a technology-agnostic library ([Spring Actuator](https://www.baeldung.com/spring-boot-actuators)) to expose operational information of a running application, such as health, info, and metrics.  These can be exposed via HTTP endpoints or JMX beans. To add this library to a spring service following dependency needs to be added to the 'build.gradle' file.
@@ -49,7 +49,7 @@ For more information, we recommend reading the [official spring documentation](h
 
 ### Configure Probing in the deployment file
 To manage all our configurations for the deployment of all our services we [terraform](https://www.terraform.io/).
-Therefore all of our files in our [deployment repository](https://github.com/IT-REX-Platform/gits-infra) are terraform files.
+Therefore all of our files in our [deployment repository](https://github.com/MEITREX/infrastructure) are terraform files.
 To allow probing for a service the 'container' spec needs to be extended by the following example code block: 
 ```
 liveness_probe {
