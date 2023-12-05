@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to MEITREX - Modular Embedded Intelligent Tutoring and Remote Education eXperience's documentation!
+Welcome to MEITREX's documentation!
 =======================================================================
 
 .. TOC is sorted by importance: usage -> installation -> developer hints -> structure -> protocols
