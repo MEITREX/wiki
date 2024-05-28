@@ -224,12 +224,14 @@ The student gets a bonus on the power score if he has a high health and fitness 
 
 While the reward system is used to motivate the students to learn, the skill level system is used to reflect the skills
 of the students.
-There are four categories of skills:
+There are six categories of skills:
 
 - Remember
 - Understand
 - Apply
 - Analyze
+- Evaluate
+- Create
 
 ![Taxonomy's Level](images/taxonomy'level.png)
 
@@ -254,13 +256,37 @@ There are four categories of skills:
 
 #### Analyze
 
-> "Analyze" is the highest level of cognitive skills in skill level assessment.
+> "Analyze" is a higher level of cognitive skills in skill level assessment.
 > If a user's skill level is categorized as "Analyze" after an assessment, it means they have the ability to break down complex information into its component parts, identify patterns, relationships, and underlying principles.
 > Users at this level can critically evaluate information and draw conclusions based on evidence and reasoning.
 
+#### Evaluate
+>"Evaluate" is a higher level of cognitive skills in skill level assessment.
+> Has a user mastered the level "Evaluate", it means they have the ability to make a informed decision and can justify and defend this decision, as well as scrutinize other opinions.
+> User at this level are able to form their own opinion and comminucate this opinion. 
+
+#### Create
+> "Create" is the highest level of cognitive skils in skill level assessment.
+> Has a user master the level "Create", it means they are able develop or create something new based on the content they have learned.
+>Users at this level are able to create or develop something new.
+
+
 ![Skill level](images/skilllevel.PNG)
 
-### Calculation of the Skill Level Score
+### Calculation of the Skill Level Score/ Knowledge Status 
+In this section, we will explain how the skill level/knowledge status score is calculated.
+For each skill category, the calculation is the same, the skill category.
+
+For the calculation of the skill level score, a method called M-Elo is used. 
+Elo has its origins in the chess world, where it is used to rank players based on their performances in games and the strength of the opponent. 
+In recent years Elo has been modified and can be used since then to determine students' knowledge status, as well as the probability, that a student will answer a given question correctly. The student becomes the player and the item, the student answers, is the student's opponent. 
+Has the student answers the item, the student's abilities of the skills and levels of Bloom's Taxonomy associated with the item will be updated based on the student's performance on the item and the difficulty of the item. Afterwards, the item difficulty is updated. To calculate the probability, that the student will answer this item on the next attempt correctly the item difficulty is subtracted from the student's ability and the sigmoid function is applied to the result to get the probability.
+Further details on the workings of M-Elo can be found in the paper of [Abdi et. al.](https://files.eric.ed.gov/fulltext/ED599177.pdf).
+
+When a user completes an assessment, MEITREX loops through all items of the assessment and updates for each item the item difficulty and the student's abilities of the skills and levels of Bloom's Taxonomy, that are associated with the item. Following the new skill level scores are calculated by adding the students' ability of the corresponding skill to the students' ability of the corresponding level of Bloom's Taxonomy. The result is divided by two and the sigmoid function is applied to this result to get an value between 0 and 1. Keep in mind, that an uncertainty function takes the number of previous attempts into account, so that when the number of previous attempts is already large the changes in the knowledge status are smaller compared to a smaller number of attempts.
+
+
+### Archieved- Calculation of the Skill Level Score
 
 In this section, we will explain how the skill level score is calculated.
 For each skill category, the calculation is the same, the skill category in which points are gained is configured per assessment.
@@ -275,7 +301,7 @@ For each skill category, the calculation is the same, the skill category in whic
 
 E.g. if a chapter has 2 assignments with 1 skill point each, each assignment will contribute 5 levels to the skill level. If another chapter has 1 assignment with 2 skill points and another with 1 skill point, the 1-point assessment will contribute 3.3 levels to the skill level.
 
-### Assessments' Rewarded Skill Points Calculation
+### Archieved - Assessments' Rewarded Skill Points Calculation
 
 * Each time a student works on new content or content that is due for repetition, their skill levels are updated.
 * For content that needs to be repeated, the student can only reach the full amount of skill points when the student has repeated the content the necessary amount of times

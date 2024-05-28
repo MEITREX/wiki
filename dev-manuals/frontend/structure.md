@@ -65,6 +65,10 @@ app
 │   │   ├── scoreboard
 │   │   │   ├── loading.tsx
 │   │   │   └── page.tsx
+│   │   ├── skills
+│   │   │   ├── loading.tsx
+│   │   │   ├── page.tsx
+│   │   │   └── student.tsx
 │   │   ├── statistics
 │   │   │   ├── loading.tsx
 │   │   │   ├── page.tsx
@@ -136,6 +140,7 @@ components
 ├── Form.tsx
 ├── FormErrors.tsx
 ├── Heading.tsx
+├── ItemFormSection.tsx
 ├── MediaContentModal.tsx
 ├── MediaRecordIcon.tsx
 ├── MediaRecordSelector.tsx
@@ -154,6 +159,7 @@ components
 ├── RichTextEditor.tsx
 ├── Searchbar.tsx
 ├── Section.tsx
+├── Skill.tsx
 ├── SkillLevels.tsx
 ├── Stage.tsx
 ├── Subheading.tsx

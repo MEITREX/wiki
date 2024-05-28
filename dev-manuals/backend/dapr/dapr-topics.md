@@ -16,13 +16,13 @@ This includes
 | Service            | Subscribes to                                                                                      | Publishes                                                                                          |
 |--------------------|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | Course service     |                                                                                                    | [course-changed](#topic-course-changed) <br>[chapter-changed](#topic-chapter-changed)              |
-| User Service       |                                                                                                    |                                                                                                    |
-| Content Service    | [chapter-changed](#topic-chapter-changed)<br>[content-progressed](#topic-content-progressed)       | [content-changed](#topic-content-changed)<br>[user-progress-updated](#topic-user-progress-updated) |
+| User Service       |                                                                                                           |                                                                                                    |
+| Content Service    | [chapter-changed](#topic-chapter-changed)<br>[content-progressed](#topic-content-progressed)<br>(#topic-course-changed) [item-changed](#topic-item-changed)      | [content-changed](#topic-content-changed)<br>[user-progress-updated](#topic-user-progress-updated) |
 | Media Service      | [content-changed](#topic-content-changed)                                                          | [content-progressed](#topic-content-progressed)                                                    |
-| Flashcard Service  | [content-changed](#topic-content-changed)                                                          | [content-progressed](#topic-content-progressed)<br>[item-changed](#topic-item-changed)                                                     |
-| Quiz Service       | [content-changed](#topic-content-changed)                                                          | [content-progressed](#topic-content-progressed)<br>[item-changed](#topic-item-changed)                                                    |
-| Reward Service     | [user-progress-updated](#topic-user-progress-updated)<br>[course-changed](#topic-course-changed)   |                                                                                                    |
-| Skilllevel Service | [user-progress-updated](#topic-user-progress-updated)<br>[course-changed](#topic-course-changed) |                                                                                                    |
+| Flashcard Service  | [content-changed](#topic-content-changed)                                                          | [content-progressed](#topic-content-progressed)<br>[item-changed](#topic-item-changed)                                            |
+| Quiz Service       | [content-changed](#topic-content-changed)                                                          | [content-progressed](#topic-content-progressed)<br>[item-changed](#topic-item-changed)                                            |
+| Reward Service     | [user-progress-updated](#topic-user-progress-updated)<br>[course-changed](#topic-course-changed)   |                                                                                               |
+| Skilllevel Service | [user-progress-updated](#topic-user-progress-updated)<br>[course-changed](#topic-course-changed) [item-changed](#topic-item-changed)|                                                         |
 
 ## Topic: Course Changed
 
@@ -158,8 +158,8 @@ This topic is used by the Quiz and Flashcard Service to inform Item-dependant Se
 </ul></dd>
 <dt>Subscribers</dt>
 <dd><ul>
-<li>Content Service</li>
 <li>SkillLevel Service</li>
+<li>Content Service</li>
 </ul></dd>
 </dl>
 
@@ -211,7 +211,7 @@ This topic is used to communicate that a certain content has been completed by a
 | correctness    | double          | The level of correctness achieved by the user.                  |
 | hintsUsed      | int             | The number of hints used by the user.                           |
 | timeToComplete | Integer         | The time taken by the user to complete the progress (optional). |
-|responses       | List\<Response> | The responses of the user                                       |
+| responses      | List\<Response> | The responses of the user                                       |
 
 ## Topic: User Progress Updated
 
@@ -245,14 +245,14 @@ This topic is used to communicate that the content service has processed the upd
 
 ### Message Content
 
-| Field          | Type                | Description                                                      |
-|----------------|---------------------|------------------------------------------------------------------|
-| userId         | UUID                | The ID of the user associated with the progress update event.    |
-| contentId      | UUID                | The ID of the content associated with the progress update event. |
-| chapterId      | UUID                | The ID of the chapter associated with the progress update event. |
-| courseId       | UUID                | The ID of the course associated with the progress update event   |
-| success        | boolean             | Indicates whether the user's progress was successful or not.     |
-| correctness    | double              | The level of correctness achieved by the user.                   |
-| hintsUsed      | int                 | The number of hints used by the user.                            |
-| timeToComplete | Integer             | The time taken by the user to complete the progress (optional).  |
-|responses       | List\<itemResponse> | A list with the users' responses to items                        |
+| Field          | Type                | Description                                                                             |
+|----------------|---------------------|-----------------------------------------------------------------------------------------|
+| userId         | UUID                | The ID of the user associated with the progress update event.                           |
+| contentId      | UUID                | The ID of the content associated with the progress update event.                        |
+| chapterId      | UUID                | The ID of the chapter associated with the progress update event.                        |
+| courseId       | UUID                | The ID of the course associated with the progress update event                          |
+| success        | boolean             | Indicates whether the user's progress was successful or not.                            |
+| correctness    | double              | The level of correctness achieved by the user.                                          |
+| hintsUsed      | int                 | The number of hints used by the user.                                                   |
+| timeToComplete | Integer             | The time taken by the user to complete the progress (optional).                         |
+| responses      | List\<itemResponse> | A list with the responses of the user and additional information to the answered items  |

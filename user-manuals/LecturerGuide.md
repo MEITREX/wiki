@@ -46,31 +46,33 @@ After adding flashcards, media and quiz lecturer can further add details in flas
 
 ### Flashcard Details
 1. Add flashcard by clicking on "ADD FLASHCARD".
-2. Add Sides of flashcard.As a side lecturer can create question and answer of that particular Flashcard.
+2. Add the item details.![quiz detail](Images/Item_Information.png)
+3. Add Sides of flashcard.As a side lecturer can create question and answer of that particular Flashcard.
    ![add que-ans](Images/add_que-ans.png)
-3. Flashcards and their sides are deletable.
+4. Flashcards and their sides are deletable.
 
 ### Media Details
 1. After adding media, lecturer can see that uploaded content by clicking on particular uploaded content and he or she can see that content, even delete and edit option is also there.
 
 ### Quiz Details
 1. Add question to the quiz by "ADD QUESTION".
-2. For the question type, 3 options are given:
+2. Add the item details
+3. For the question type, 3 options are given:
    ![quiz detail](Images/quiz_detail.png)
 
 - **Multiple Choice Question:** :
   Students have to select all the correct answers from the available options.
     - Fill the required details like question, hint etc.
     - By clicking "Add", multiple choice question will be added.
-      ![add asosiaction](Images/add_asosiaction.png)
+      ![add asosiaction](Images/multiple_choice.png)
 - **Cloze Question:**
   Fill in missing words in a sentence.
     - lecturer can add the cloze question by adding required details shown in the Image.
-      ![add cloze](Images/add_cloze.png)
+      ![add cloze](Images/Cloze_Question.png)
 - **Association Question:**
   Match related concepts or items.
     - In assosication question lecturers can create question-answer pairs for assessments.
-      ![add asosiaction](Images/add_asosiaction.png)
+      ![add asosiaction](Images/Association_Quiz.png)
 ## Join as Lecturer
 After creating the course the lecturer is automatically added as the administrator to the course.
 

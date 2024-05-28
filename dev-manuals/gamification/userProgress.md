@@ -65,6 +65,17 @@ dapr-pubsub component `gits`. The event data is structured like this:
    "correctnessScore": "<float correctness score between 0 and 1>",
    "hintUsed": "<boolean whether a hint was used>",
    "learningInterval": "<learning interval of the content in milliseconds>",
-   "timeToComplete": "<time to complete the content in milliseconds>"
+   "timeToComplete": "<time to complete the content in milliseconds>",
+   "responses": "<list the users responses>"
+}
+```
+Response:
+```json
+{
+   "itemId": "<uuid of the item>",
+   "response": "<float expressing the correctness of the users response>",
+   "skillids": "<list of uuids of the skills associated with the item>",
+   "levelsOfBloomsTaxonomy": "<list of the associtated levels of Bloom's Taxonomy>",
+ 
 }
 ```
