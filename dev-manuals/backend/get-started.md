@@ -44,7 +44,7 @@ The local deployment of the backend is done in a few simple steps:
 
 # Some Hints/Common Issues
 ## Error Unsupported class file major version 64 when compiling
-Try to manually force gradle to use JDK 17 in the IntelliJ settings.
+Try to manually force gradle to use JDK 21 in the IntelliJ settings.
 
 # Debugging Services
 
