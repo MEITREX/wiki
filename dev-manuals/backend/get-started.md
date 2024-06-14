@@ -7,7 +7,7 @@ If you don't want to develop and only run the service, there is docker compose f
 
 - Java
   
-  We use Java 17. You can download the JDK [here](https://www.oracle.com/java/technologies/downloads/#java17).
+  We use Java 21. You can download the JDK [here](https://www.oracle.com/java/technologies/downloads/#java21).
   
 - Git
 
