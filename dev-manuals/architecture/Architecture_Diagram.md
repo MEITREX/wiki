@@ -1,3 +1,3 @@
 # Architecture model
 
-![MEITREX-Microservice_Architecture.png](MEITREX-Microservice_Architecture.png)
+![architecture.drawio.svg](architecture.drawio.svg)

@@ -36,3 +36,8 @@ From the content set that is labeled as *required* our implementation selects th
 2. hasn't been done in a long time
 4. reward points for completing content
 3. has been learned before
+
+## Management of Items and Skills
+Each assessment has a list of items. Each item is a entity, that can be answered by a student. Current items are flashcards and questions. Items build the foundation for the calculation the knowledge status. For more information see the documentation for the [calculation of the knowledge status](../gamification/Scoring%20System.md).
+To each item belongs a list with skills associated with the item and a list with levels of Bloom's Taxonomy, that are associated with the item.
+The content service is responsible for the management of the skills and levels of Bloom's Taxonomy. The [quiz service](./quiz-service.md), and [flashcard service](./flashcard-service.md) notify the content service, when question or a flashcard is deleted. Additionally the content service is responsible for providing the [skillLevel service](./skill-level-service.md) with the necessary information regarding the items a user has answered. This is done by adding the required information to the user-progress event whenever the content service publishes this event.
