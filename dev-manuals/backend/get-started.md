@@ -7,7 +7,7 @@ If you don't want to develop and only run the service, there is docker compose f
 
 - Java
   
-  We use Java 17. You can download the JDK [here](https://www.oracle.com/java/technologies/downloads/#java17).
+  We use Java 21. You can download the JDK [here](https://www.oracle.com/java/technologies/downloads/#java21).
   
 - Git
 
@@ -44,7 +44,7 @@ The local deployment of the backend is done in a few simple steps:
 
 # Some Hints/Common Issues
 ## Error Unsupported class file major version 64 when compiling
-Try to manually force gradle to use JDK 17 in the IntelliJ settings.
+Try to manually force gradle to use JDK 21 in the IntelliJ settings.
 
 # Debugging Services
 
