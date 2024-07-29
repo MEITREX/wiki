@@ -1,19 +1,22 @@
 # Adding a new service
 
 To add a new service create a new repository from the template-microservice using the Use this template button. 
-The name should be <servicename>_service and the visibility should be public.
-Once the repository has been created go to the repository settings and add the "Enpro-SS2023-Developers" team to the collaborators. 
+The name should be \<servicename\>_service and the visibility should be public.
+Once the repository has been created go to the repository settings and add the "Feature Dev" team to the collaborators. 
 Make the main branch protected with the following settings:
 ![](/images/branch-protection-rules.png)
-Change the License to MIT.
+
+Name the branch protection rule "MEITREX-repo-rules".
+
+Change the License to MIT, if it isn't MIT yet.
 
 The following files need to be changed:
 
 - Settings.gradle -> change the "rootProject.name" to the servicename
-- Build.gradle -> under sonarqube change the property "sonar.projectKey" to "MEITREX_<servicename>"
+- Build.gradle -> under sonarqube change the property "sonar.projectKey" to "MEITREX_\<servicename\>"
 
 - Change the name of the template package to the name of the service
-- Remove the package-info.java files in the src/main/java folder (or update with the microservice specific information)
+- Remove the package-info.java files in the src/main/java folder, if the file is present (or update with the microservice specific information)
 - Update the application.properties file in the src/main/resources folder (check the TODOS in the file)
 - Update the application-prod.properties in the src/main/resources folder (check the TODOS in the file)
 - Update the application-dev.properties in the src/main/resources folder (check the TODOS in the file)
