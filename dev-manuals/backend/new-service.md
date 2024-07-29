@@ -5,6 +5,7 @@ The name should be \<servicename\>_service and the visibility should be public.
 Once the repository has been created go to the repository settings and add the "Feature Dev" team to the collaborators. 
 Make the main branch protected with the following settings:
 ![](/images/branch-protection-rules.png)
+
 Name the branch protection rule "MEITREX-repo-rules".
 
 Change the License to MIT, if it isn't MIT yet.
