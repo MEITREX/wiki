@@ -187,5 +187,23 @@ Some services might use additonal ports, like the mediaservice.
 			<td>no</td>
 			<td/>
 		</tr>
+		<tr>
+			<td>Assignment Service</td>
+			<td>1100</td>
+			<td>yes</td>
+			<td>assignment_service</td>
+		</tr>
+		<tr>
+			<td>Assignment Service</td>
+			<td>1101</td>
+			<td>no</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>Assignment Service DB</td>
+			<td>1132</td>
+			<td>no</td>
+			<td/>
+		</tr>
 	</tbody>
 </table>
