@@ -173,25 +173,31 @@ classDiagram {
         pos = apos(14.562079479715207, 112.97570292578035)
     }
 
-    class("Assignment", abstract = true) {
+    class("Assignment") {
+        private {
+            totalCredits:Float
+            assignmentType:AssignmentType
+        }
     } layout {
-        pos = apos(582.7862936703857, 110.89913658433574)
+        pos = apos(435.651683645, 112.97570292578035)
     }
 
     class("Exercise") {
+        private {
+            totalExerciseCredits:Float
+        }
     } layout {
-        pos = apos(204.08270836398015, 331.3772513175171)
+        pos = apos(435.651683645, 263.011160106)
     }
 
-    class("PhysicalTest") {
+    class("Subexercise") {
+        private {
+            totalExerciseCredits:Float
+        }
     } layout {
-        pos = apos(587.575758213572, 332.67418140418283)
+        pos = apos(435.651683645, 409.997040864)
     }
 
-    class("Game") {
-    } layout {
-        pos = apos(952.8585281227918, 334.1961429598015)
-    }
 
     class("MediaContent", abstract = true) {
     } layout {
@@ -286,6 +292,15 @@ classDiagram {
         }
     } layout {
         pos = apos(631.5912006939351, -1501.48503365413)
+    }
+
+    class("AssignmentType", stereotypes = list("enumeration")) {
+        public {
+            ExerciseSheet
+            PhysicalTest
+        }
+    } layout {
+        pos = apos(631.5912006939351, -1374.082774575)
     }
 
     class("MediaType", stereotypes = list("enumeration")) {
@@ -457,11 +472,15 @@ classDiagram {
         label("0..* {unique}", 0.40418475035504275, -21.932262703223614, 0)
     }
 
-    list(Exercise, PhysicalTest, Game).forEach {
-        it extends Assignment with {
-            over = start(0.75).axisAligned(0, rpos(PhysicalTest, -0.15483851458021336, -124.88581295776144)).line(end(0.24694187579289928))
+    Exercise --* Assignment with {
+        over = start(0.75).line(end(0.25))
+        label("1..*", 0.970513438, -17.623324837, 0)
         }
-    }
+
+    Subexercise --* Exercise with {
+        over = start(0.75).line(end(0.25))
+        label("0..*", 0.709762175, -18.801118152, 0)
+        }
 
     list(SelfAssessmentQuiz, Flashcards, Assignment).forEach {
         it extends Assessment with {
