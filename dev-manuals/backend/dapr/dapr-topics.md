@@ -13,16 +13,34 @@ This includes
 
 ## Events by service
 
-| Service            | Subscribes to                                                                                      | Publishes                                                                                          |
-|--------------------|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| Course service     |                                                                                                    | [course-changed](#topic-course-changed) <br>[chapter-changed](#topic-chapter-changed)              |
-| User Service       |                                                                                                           |                                                                                                    |
-| Content Service    | [chapter-changed](#topic-chapter-changed)<br>[content-progressed](#topic-content-progressed)<br>(#topic-course-changed) [item-changed](#topic-item-changed)      | [content-changed](#topic-content-changed)<br>[user-progress-updated](#topic-user-progress-updated) |
-| Media Service      | [content-changed](#topic-content-changed)                                                          | [content-progressed](#topic-content-progressed)                                                    |
-| Flashcard Service  | [content-changed](#topic-content-changed)                                                          | [content-progressed](#topic-content-progressed)<br>[item-changed](#topic-item-changed)                                            |
-| Quiz Service       | [content-changed](#topic-content-changed)                                                          | [content-progressed](#topic-content-progressed)<br>[item-changed](#topic-item-changed)                                            |
-| Reward Service     | [user-progress-updated](#topic-user-progress-updated)<br>[course-changed](#topic-course-changed)   |                                                                                               |
-| Skilllevel Service | [user-progress-updated](#topic-user-progress-updated)<br>[course-changed](#topic-course-changed) [item-changed](#topic-item-changed)|                                                         |
+* Course Service
+    - Subscribes To: [course-changed](#topic-course-changed), [chapter-changed](#topic-chapter-changed)
+    - Publishes: nothing
+* User Service
+    - Subscribes To: nothing
+    - Publishes: nothing
+* Content Service
+    - Subscribes To: [chapter-changed](#topic-chapter-changed), [content-progressed](#topic-content-progressed), [item-changed](#topic-item-changed)
+    - Publishes: [content-changed](#topic-content-changed), [user-progress-updated](#topic-user-progress-updated)
+* Media Service
+    - Subscribes To: [content-changed](#topic-content-changed)
+    - Publishes: [content-progressed](#topic-content-progressed), [media-record-file-created](#topic-media-record-file-created), [media-record-deleted](#topic-media-record-deleted), [content-media-record-links-set](#topic-content-media-record-links-set)
+* Flashcard Service
+    - Subscribes To: [content-changed](#topic-content-changed)
+    - Publishes: [content-progressed](#topic-content-progressed), [item-changed](#topic-item-changed), [assessment-content-mutated](#topic-assessment-content-mutated)
+* Quiz Service
+    - Subscribes To: [content-changed](#topic-content-changed)
+    - Publishes: [content-progressed](#topic-content-progressed), [item-changed](#topic-item-changed), [assessment-content-mutated](#topic-assessment-content-mutated)
+* Reward Service
+    - Subscribes To: [user-progress-updated](#topic-user-progress-updated), [course-changed](#topic-course-changed)
+    - Publishes: nothing
+* Skilllevel Service
+    - Subscribes To: [user-progress-updated](#topic-user-progress-updated), [course-changed](#topic-course-changed)
+    - Publishes: nothing
+* DocProcAi Service
+    - Subscribes To: [media-record-file-created](#topic-media-record-file-created), [media-record-deleted](#topic-media-record-deleted), [content-media-record-links-set](#topic-content-media-record-links-set), [assessment-content-mutated](#topic-assessment-content-mutated)
+    - Publishes: nothing
+
 
 ## Topic: Course Changed
 
@@ -256,3 +274,140 @@ This topic is used to communicate that the content service has processed the upd
 | hintsUsed      | int                 | The number of hints used by the user.                                                   |
 | timeToComplete | Integer             | The time taken by the user to complete the progress (optional).                         |
 | responses      | List\<itemResponse> | A list with the responses of the user and additional information to the answered items  |
+
+## Topic: Assessment Content Mutated
+
+Raised when the contents of an assessment were changed (e.g. a question of a quiz was added/removed/edited).
+
+<dl>
+    <dt>Publishers</dt>
+    <dd>
+        <ul>
+            <li>Quiz Service</li>
+            <li>Flashcard Service</li>
+        </ul>
+    </dd>
+    <dt>Subscribers</dt>
+    <dd>
+        <ul>
+            <li>DocProcAI Service</li>
+        </ul>
+    </dd>
+</dl>
+
+### Message Content
+| Field                 | Type                 | Description                                                                   |
+|-----------------------|----------------------|-------------------------------------------------------------------------------|
+| courseId              | UUID                 | The ID of the course the assessment which was mutated belongs to.             |
+| assessmentId          | UUID                 | The ID of the assessment which was mutated.                                   |
+| assessmentType        | Enum                 | One of either [QUIZ, FLASHCARDS] depending on the type of the assessment.     |
+| textualRepresentation | List<String>         | Textual representations of the tasks of this assessment (and their solutions). For more info see below |
+
+### Textual representation
+
+The purpose of this field is to provide the contents of this assessment in a simple textual format for other services to use
+without having to have any assessment-specific code.
+
+It is a list of Strings, so if an assessment consists of multiple tasks/parts, each part can have its own textual representation.
+If the assessment only consists of one task or if the nature of the assessment makes it hard to split it up into concrete parts, it 
+is acceptable to only add a single textual representation String to the list, which covers the whole assessment.
+
+If a service can not/does not want to provide a textual representation of the assessment, the list can be left empty.
+
+There is no exact formatting guideline for the textual representation. Its purpose is to just provide a very basic means to
+fetch assessments' contents in textual form, e.g. for performing a search or similar purposes.
+
+The textual representation can contain spoilers, so it should never be shown to students.
+
+A good textual representation may look like the following for example, for a quiz:
+
+String 1:
+```
+Question: How tall is the Eiffel Tower?
+Correct Answer: 330m
+```
+
+String 2:
+```
+Question: What colors make up the French flag?
+Correct Answer: blue, white, and red
+```
+
+String 3:
+```
+Task: Fill in the gaps in the text:
+King Luis XIV famously said: "L'[etat], c'est [moi]!"
+```
+
+## Topic: Media Record File Created
+
+Raised when a new file is uploaded for a media record.
+
+<dl>
+    <dt>Publishers</dt>
+    <dd>
+        <ul>
+            <li>Media Service</li>
+        </ul>
+    </dd>
+    <dt>Subscribers</dt>
+    <dd>
+        <ul>
+            <li>DocProcAI Service</li>
+        </ul>
+    </dd>
+</dl>
+
+### Message Content
+| Field          | Type                 | Description                                                                   |
+|----------------|----------------------|-------------------------------------------------------------------------------|
+| mediaRecordId  | UUID                 | The ID of the media record for which a file was uploaded.                     |
+
+## Topic: Media Record Deleted
+
+Raised when a media record is deleted
+
+<dl>
+    <dt>Publishers</dt>
+    <dd>
+        <ul>
+            <li>Media Service</li>
+        </ul>
+    </dd>
+    <dt>Subscribers</dt>
+    <dd>
+        <ul>
+            <li>DocProcAI Service</li>
+        </ul>
+    </dd>
+</dl>
+
+### Message Content
+| Field          | Type                 | Description                                                                   |
+|----------------|----------------------|-------------------------------------------------------------------------------|
+| mediaRecordId  | UUID                 | The ID of the media record which was deleted.                                 |
+
+## Topic: Content Media Record Links Set
+
+Raised when a `MediaContent`'s media record links are set/changed.
+
+<dl>
+    <dt>Publishers</dt>
+    <dd>
+        <ul>
+            <li>Media Service</li>
+        </ul>
+    </dd>
+    <dt>Subscribers</dt>
+    <dd>
+        <ul>
+            <li>DocProcAI Service</li>
+        </ul>
+    </dd>
+</dl>
+
+### Message Content
+| Field          | Type                 | Description                                                                   |
+|----------------|----------------------|-------------------------------------------------------------------------------|
+| contentId      | UUID                 | The ID of the content whose media record links were set.                      |
+| mediaRecordId  | List<UUID>           | List of the IDs of the media records which were linked to the content.        |
