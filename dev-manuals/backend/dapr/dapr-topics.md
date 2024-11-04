@@ -38,7 +38,7 @@ This includes
     - Subscribes To: [user-progress-updated](#topic-user-progress-updated), [course-changed](#topic-course-changed)
     - Publishes: nothing
 * DocProcAi Service
-    - Subscribes To: [media-record-file-created](#topic-media-record-file-created), [media-record-deleted](#topic-media-record-deleted), [content-media-record-links-set](#topic-content-media-record-links-set), [assessment-content-mutated](#topic-assessment-content-mutated)
+    - Subscribes To: [media-record-file-created](#topic-media-record-file-created), [media-record-deleted](#topic-media-record-deleted), [content-media-record-links-set](#topic-content-media-record-links-set), [assessment-content-mutated](#topic-assessment-content-mutated), [content-changed](#topic-content-changed)
     - Publishes: nothing
 
 
@@ -55,20 +55,6 @@ This topic is used by the Course Service to inform Course-dependant Services of 
 <dd>gits</dd>
 <dt>Java class</dt>
 <dd><a href="https://github.com/MEITREX/common/blob/main/src/main/java/de/unistuttgart/iste/gits/common/event/CourseChangeEvent.java">CourseChangeEvent</a></dd>
-</dl>
-
-### Involved Services
-
-<dl>
-<dt>Publishers</dt>
-<dd><ul>
-<li>Course service</li>
-</ul></dd>
-<dt>Subscribers</dt>
-<dd><ul>
-<li>Reward Service</li>
-<li>SkillLevel Service</li>
-</ul></dd>
 </dl>
 
 ### Message Content
@@ -91,19 +77,6 @@ This topic is used by the Course Service to inform Chapter-dependant Services of
 <dd>gits</dd>
 <dt>Java class</dt>
 <dd><a href="https://github.com/MEITREX/common/blob/main/src/main/java/de/unistuttgart/iste/gits/common/event/ChapterChangeEvent.java"> ChapterChangeEvent</a></dd>
-</dl>
-
-### Involved Services
-
-<dl>
-<dt>Publishers</dt>
-<dd><ul>
-<li>Course service</li>
-</ul></dd>
-<dt>Subscribers</dt>
-<dd><ul>
-<li>Content Service</li>
-</ul></dd>
 </dl>
 
 ### Message Content
@@ -129,21 +102,6 @@ This topic is used by the Content Service to inform Content-dependant Services o
 <dd><a href="https://github.com/MEITREX/common/blob/main/src/main/java/de/unistuttgart/iste/gits/common/event/ContentChangeEvent.java"> ContentChangeEvent </a></dd>
 </dl>
 
-### Involved Services
-
-<dl>
-<dt>Publishers</dt>
-<dd><ul>
-<li>Content service</li>
-</ul></dd>
-<dt>Subscribers</dt>
-<dd><ul>
-<li>Media Service</li>
-<li>Flashcard Service</li>
-<li>Quiz service</li>
-</ul></dd>
-</dl>
-
 ### Message Content
 
 | Field       | Type        | Description                                                                                                                |
@@ -164,21 +122,6 @@ This topic is used by the Quiz and Flashcard Service to inform Item-dependant Se
 <dd>gits</dd>
 <dt>Java class</dt>
 <dd><a href="https://github.com/MEITREX/common/blob/main/src/main/java/de/unistuttgart/iste/gits/common/event/ItemChangeEvent.java"> ItemChangeEvent </a></dd>
-</dl>
-
-### Involved Services
-
-<dl>
-<dt>Publishers</dt>
-<dd><ul>
-<li>Flashcard service</li>
-<li>Quiz service</li>
-</ul></dd>
-<dt>Subscribers</dt>
-<dd><ul>
-<li>SkillLevel Service</li>
-<li>Content Service</li>
-</ul></dd>
 </dl>
 
 ### Message Content
@@ -202,21 +145,6 @@ This topic is used to communicate that a certain content has been completed by a
 <dd>gits</dd>
 <dt>Java class</dt>
 <dd><a href="https://github.com/MEITREX/common/blob/main/src/main/java/de/unistuttgart/iste/gits/common/event/ContentProgressedEvent.java">ContentProgressedEvent</a> </dd>
-</dl>
-
-### Involved Services
-
-<dl>
-<dt>Publishers</dt>
-<dd><ul>
-<li>Media service</li>
-<li>Flashcard service</li>
-<li>Quiz service</li>
-</ul></dd>
-<dt>Subscribers</dt>
-<dd><ul>
-<li>Content service</li>
-</ul></dd>
 </dl>
 
 ### Message Content
@@ -246,21 +174,6 @@ This topic is used to communicate that the content service has processed the upd
 <dd><a href="https://github.com/MEITREX/common/blob/main/src/main/java/de/unistuttgart/iste/gits/common/event/UserProgressUpdatedEvent.java">UserProgressUpdated</a> </dd>
 </dl>
 
-### Involved Services
-
-<dl>
-<dt>Publishers</dt>
-<dd><ul>
-<li>Content service</li>
-
-</ul></dd>
-<dt>Subscribers</dt>
-<dd><ul>
-<li>Reward service</li>
-<li>Skilllevel service</li>
-</ul></dd>
-</dl>
-
 ### Message Content
 
 | Field          | Type                | Description                                                                             |
@@ -278,22 +191,6 @@ This topic is used to communicate that the content service has processed the upd
 ## Topic: Assessment Content Mutated
 
 Raised when the contents of an assessment were changed (e.g. a question of a quiz was added/removed/edited).
-
-<dl>
-    <dt>Publishers</dt>
-    <dd>
-        <ul>
-            <li>Quiz Service</li>
-            <li>Flashcard Service</li>
-        </ul>
-    </dd>
-    <dt>Subscribers</dt>
-    <dd>
-        <ul>
-            <li>DocProcAI Service</li>
-        </ul>
-    </dd>
-</dl>
 
 ### Message Content
 | Field                 | Type                 | Description                                                                   |
@@ -343,21 +240,6 @@ King Luis XIV famously said: "L'[etat], c'est [moi]!"
 
 Raised when a new file is uploaded for a media record.
 
-<dl>
-    <dt>Publishers</dt>
-    <dd>
-        <ul>
-            <li>Media Service</li>
-        </ul>
-    </dd>
-    <dt>Subscribers</dt>
-    <dd>
-        <ul>
-            <li>DocProcAI Service</li>
-        </ul>
-    </dd>
-</dl>
-
 ### Message Content
 | Field          | Type                 | Description                                                                   |
 |----------------|----------------------|-------------------------------------------------------------------------------|
@@ -367,21 +249,6 @@ Raised when a new file is uploaded for a media record.
 
 Raised when a media record is deleted
 
-<dl>
-    <dt>Publishers</dt>
-    <dd>
-        <ul>
-            <li>Media Service</li>
-        </ul>
-    </dd>
-    <dt>Subscribers</dt>
-    <dd>
-        <ul>
-            <li>DocProcAI Service</li>
-        </ul>
-    </dd>
-</dl>
-
 ### Message Content
 | Field          | Type                 | Description                                                                   |
 |----------------|----------------------|-------------------------------------------------------------------------------|
@@ -390,21 +257,6 @@ Raised when a media record is deleted
 ## Topic: Content Media Record Links Set
 
 Raised when a `MediaContent`'s media record links are set/changed.
-
-<dl>
-    <dt>Publishers</dt>
-    <dd>
-        <ul>
-            <li>Media Service</li>
-        </ul>
-    </dd>
-    <dt>Subscribers</dt>
-    <dd>
-        <ul>
-            <li>DocProcAI Service</li>
-        </ul>
-    </dd>
-</dl>
 
 ### Message Content
 | Field          | Type                 | Description                                                                   |
