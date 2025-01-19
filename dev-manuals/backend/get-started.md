@@ -41,6 +41,7 @@ The local deployment of the backend is done in a few simple steps:
 1. Start docker (desktop)
 2. Create a network for the dapr sidecars to communicate: `docker network create dapr-network`
 3. Execute the .bat or .sh file found under ./backend/compose.bat using `compose.bat up --build` (re-builds the containers) or `compose.bat up` (starts the containers without re-building if they already exist).
+  - See [##`docprocai` Service Taking Forever to Build]
 
 ## Debugging/ Running Selected Services Locally
 
@@ -65,6 +66,69 @@ Else:
 * The Dapr PubSub Events do not work when debugging in this way
 
 # Some Hints/Common Issues
+
+## `docprocai` Service Taking Forever to Build
+
+Since the `docprocai` service leverages a huge LLM for its functions and this LLM is being pulled on every build of the container, the container might take a while to start. To prevent the pull, the following changes can be made:
+
+1. Create a folder with the path `llm_data/models` in the `docprocai` service repo
+2. Navigate into it and clone e.g. `https://huggingface.co/Alibaba-NLP/gte-large-en-v1.5` (should take a while)
+  - If the download of the model file (managed by git large file system) fails, you can download it manually from the git web UI and move it into the cloned huggingface.co repo
+  - You can go even further and disable the usage of the models which might speed up the build. To do this, set the `enabled: true` values for the AI features to `false`  in the `config.yaml` file
+3. Build the container
+
+## `docprocai` Service failing to Start
+
+If an error occurs on the container start which contains something like:
+
+```
+could not select device driver "nvidia" with capabilities: [[gpu]]
+```
+```
+error running hook #0: error running hook: exit status 1, stdout: , stderr: Auto-detected mode as 'legacy'nvidia-container-cli: initialization error: WSL environment detected but no adapters were found: unknown
+```
+
+The fix for this might be the following adjustment in the `doccprocai` services docker-compose file:
+```diff
+diff --git a/docker-compose.yml b/docker-compose.yml
+index 9617824..9d54ccf 100644
+--- a/docker-compose.yml
++++ b/docker-compose.yml
+@@ -24,17 +24,10 @@ services:
+     ports:
+       - "9900:9900"
+       - "9901:9901"
+     depends_on:
+       - database
+-    deploy:
+-      resources:
+-        reservations:
+-          devices:
+-            - driver: nvidia
+-              count: all
+-              capabilities: [ gpu ]
+   dapr-docprocai:
+     image: "daprio/daprd"
+     command: [
+       "./daprd",
+       "--app-id", "docprocai_service",
+```
+
+## Failure in `database` Container
+<!-- TODO does this issue still persist/ can be reproduce it? -->
+
+Due to unknown reasons, the volume mount of the `create-multiple-databases.sh` file to the `docker-entrypoint-initdb.d` folder in the `postgresql` base container of the `database` service doesn't seems to work on some Windows machines.
+To fix this issue, remove the volume mount from the `docker-compose.yml` file of one service (we chose the `quiz_service`):
+
+```yaml
+      # - ./../<service-name>_service/pg-init-scripts:/docker-entrypoint-initdb.d
+```
+
+Instead, add the following expression just one line before the `ENTRYPOINT`/`CMD` directive to the `Dockerfile` of the service:
+
+```dockerfile
+COPY ./pg-init-scripts/create-multiple-databases.sh /docker-entrypoint-initdb.d
+```
 
 ## Error Unsupported class file major version 64 when compiling
 Try to manually force gradle to use JDK 21 in the IntelliJ settings.
