@@ -77,6 +77,22 @@ Since the `docprocai` service leverages a huge LLM for its functions and this LL
   - You can go even further and disable the usage of the models which might speed up the build. To do this, set the `enabled: true` values for the AI features to `false`  in the `config.yaml` file
 3. Build the container
 
+## Observing/ Testing the GraphQL API
+
+Requires a local `python3`, `pip` & `pyperclip` installation.
+
+1. Make sure the gateway service is up & running, then open `localhost:8080`. This should display a GraphQL Mesh "playground-like" query tool.
+2. Open the folder-icon on the left side bar to use assemble your query easily via the schemas API-endpoint-tree.
+  - If an ID is a necessity for the query, use a DB query tool of your choice (e.g. pgadmin4) to fetch it.
+3. In the `backend` repository, run the `demo_scripts/get_session_token.py` script with the `--local` argument. The script also accepts the `--username` and `--password` argument to speed up recalls. The generated token should be valid for a view minutes.
+4. Back in the GraphQL Mesh playground UI, switch to the "Header" tab at the bottom of the screen. Enter the following JSON:
+
+```json
+{
+  Authorization: "Bearer <generated-keycloak-token>"
+}
+```
+
 ## I adjusted the GraphQL API of a Service locally run, what now?
 
 Assuming, you have a Spring Boot service running locally and adjusted its `.graphqls` files, maybe some business logic or JPA entities and want the changes to be propagated into the frontend (which also is set up to run locally).
