@@ -59,8 +59,8 @@ If the service to be run locally is the frontend:
 Else:
 
 * Navigate to the `graphql_gateway` submodule, open its `docker-compose.yml` and adjust the URLs of the set of services you want to run locally in the `environment` section as follows: http://~~app-\<service-name\>~~host.docker.internal:\<service-port\>/graphql
-* Rebuild & restart the docker services via `compose.bat`/`.sh up --build`. The `gateway` container should now restart frequently because it can't reach the service to be run locally. This is desired behavior, since it now tries to fetch the adjusted URLs services graphql api from the machines `localhost`.
-* Make sure the Spring Bott dev profile's database port is set correctly
+* Rebuild & restart the docker services via `compose.bat`/`.sh up --build`. The `gateway` container should now restart frequently because it can't reach the services which are supposed to be run locally. This is desired behavior, since it now tries to fetch the graphql api schemas of the services which URLs have been modified from your machines `localhost` and the respective service-ports.
+* Make sure the Spring Boot dev profile's database port is set correctly
 * Start the set of service you want to run locally on your machine using the dev profile, which can either be selected in the IDEA Ultimate  "Run Configurations", the `application.properties` file or be passed to gradle as command line argument: `gradle bootRun --args="--spring.profiles.active=dev"`
 <!-- TODO python? -->
 * The Dapr PubSub Events do not work when debugging in this way
