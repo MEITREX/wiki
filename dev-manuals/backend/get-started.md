@@ -77,6 +77,19 @@ Since the `docprocai` service leverages a huge LLM for its functions and this LL
   - You can go even further and disable the usage of the models which might speed up the build. To do this, set the `enabled: true` values for the AI features to `false`  in the `config.yaml` file
 3. Build the container
 
+## I adjusted the GraphQL API of a Service locally run, what now?
+
+Assuming, you have a Spring Boot service running locally and adjusted its `.graphqls` files, maybe some business logic or JPA entities and want the changes to be propagated into the frontend (which also is set up to run locally).
+First of all, make sure you didn't forgot to change a related interface entity so you don't have to repeat this, e.g. modified the entity from `content.graphqls`, but not the related one in the `mutation.graphqls` file.
+
+1. Restart the service the change were made, so that the new changes are exposed on its `/graphql` URL path
+2. Restart the gateway container to propagate the API changes to GraphQL Mesh
+3. In your local frontend repo, run the `pnpm update-schema` command to pull the updated `src/schema.graphqls` file from the gateway
+4. Update the queries in the frontend on the appropriate locations to utilize your GraphQL API changes
+5. Run `pnpm relay` to parse the modified queries and generate fitting return types
+6. Use `pnpm lint:ts` to display the resulting type errors
+7. Index, commit & mention the api changes
+
 ## `docprocai` Service failing to Start
 
 If an error occurs on the container start which contains something like:
