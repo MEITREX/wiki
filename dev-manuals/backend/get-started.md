@@ -77,6 +77,13 @@ Since the `docprocai` service leverages a huge LLM for its functions and this LL
   - You can go even further and disable the usage of the models which might speed up the build. To do this, set the `enabled: true` values for the AI features to `false`  in the `config.yaml` file
 3. Build the container
 
+## "database <service_name> does not exist" FATAL Log Messages in `database` Container
+
+When creating the `database` container, it might happen that the databases for the services aren't created properly.
+To fix this, use a DB client of your choice (e.g. pgadmin4), establish a connection to the database container's postgres server on port `5432`. Then, unravel the tree entries "Servers" > "\<database-container\>" > "Databases" and right-click on "Create" > "Database...".
+Create the `content_service`, `course_service`, `docprocai_service`, `flashcard_service`, `media_service`, `quiz_service`, `reward_service` & `skilllevel_service` databases by adding the strings to the "Database" entry in the "General" tab and add the "Privilege" entries ("PUBLIC", "Tc", "root") & ("root", "CTc", "root") in the "Security" tab.
+After doing these adjustments, the issue should be resolved.
+
 ## Observing/ Testing the GraphQL API
 
 Requires a local `python3`, `pip` & `pyperclip` installation.
@@ -141,22 +148,6 @@ index 9617824..9d54ccf 100644
      command: [
        "./daprd",
        "--app-id", "docprocai_service",
-```
-
-## Failure in `database` Container
-<!-- TODO does this issue still persist/ can be reproduce it? -->
-
-Due to unknown reasons, the volume mount of the `create-multiple-databases.sh` file to the `docker-entrypoint-initdb.d` folder in the `postgresql` base container of the `database` service doesn't seems to work on some Windows machines.
-To fix this issue, remove the volume mount from the `docker-compose.yml` file of one service (we chose the `quiz_service`):
-
-```yaml
-      # - ./../<service-name>_service/pg-init-scripts:/docker-entrypoint-initdb.d
-```
-
-Instead, add the following expression just one line before the `ENTRYPOINT`/`CMD` directive to the `Dockerfile` of the service:
-
-```dockerfile
-COPY ./pg-init-scripts/create-multiple-databases.sh /docker-entrypoint-initdb.d
 ```
 
 ## Error Unsupported class file major version 64 when compiling
