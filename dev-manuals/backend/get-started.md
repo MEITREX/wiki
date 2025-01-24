@@ -50,6 +50,8 @@ found [on the wiki](https://meitrex.readthedocs.io/en/latest/dev-manuals/backend
 
 This makes it possible for you to start a service in your favorite IDE (where you can set breakpoints etc.) and for that service to hook into the rest of the system.
 
+We'd advice you to create a branch in the backend repo to aggregate (api) changes across different repos via git submodules.
+
 * At first, stop the MEITREX docker container and remove the set of services you want to run locally from the `compose.bat`/`compose.sh` list of paths to the submodule's `docker-compose.yml`s
 
 If the service to be run locally is the frontend:
