@@ -98,7 +98,7 @@ Requires a local `python3`, `pip` & `pyperclip` installation.
 
 ```json
 {
-  Authorization: "Bearer <generated-keycloak-token>"
+  "Authorization": "Bearer <generated-keycloak-token>"
 }
 ```
 
