@@ -21,13 +21,7 @@ Some services might use additonal ports, like the mediaservice.
 	<tbody>
 		<tr>
 			<td>Gateway</td>
-			<td>1000</td>
-			<td>yes</td>
-			<td>api-gateway-service</td>
-		</tr>
-		<tr>
-			<td>Gateway</td>
-			<td>1001</td>
+			<td>8080</td>
 			<td>no</td>
 			<td/>
 		</tr>
