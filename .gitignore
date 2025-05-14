@@ -2,4 +2,8 @@ make.bat
 Makefile
 $READTHEDOCS_OUTPUT/*
 .vscode/settings.json
+doctrees/
+html/
+
+### Mac OS ###
 .DS_Store
