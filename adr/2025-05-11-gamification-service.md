@@ -1,5 +1,4 @@
 # Gamification Service
-## Date
 2025-05-11
 ## Context
 We are planning to integrate various gamification elements into our system in the future, based on the Player Hexad Types (e.g. Achiever, Player, Socializer, etc.).
