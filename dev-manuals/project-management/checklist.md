@@ -4,7 +4,7 @@
 - Link to the ticket in my mergerequest?
 - Any gamification elements? Check settings if gamification is enabled
 - Does my functionality send a notification to the user? If yes, check settings and send notification
-- Does the user complete any learning activity? Change User Skill level (Skill level Service)
+- Does the user complete any learning activity? Change user skill level (Skill level service)
 
 ## Pipeline
 - Read ticket and related tickets
