@@ -199,5 +199,17 @@ Some services might use additonal ports, like the mediaservice.
 			<td>no</td>
 			<td/>
 		</tr>
+        <tr>
+			<td>Gamification Service</td>
+			<td>1200</td>
+			<td>yes</td>
+			<td>gamification_service</td>
+		</tr>
+		<tr>
+			<td>Gamification Service</td>
+			<td>1201</td>
+			<td>no</td>
+			<td/>
+		</tr>
 	</tbody>
 </table>

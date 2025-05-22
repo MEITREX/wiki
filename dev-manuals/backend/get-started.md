@@ -83,7 +83,7 @@ Since the `docprocai` service leverages a huge LLM for its functions and this LL
 
 When creating the `database` container, it might happen that the databases for the services aren't created properly. This is due to Windows file-permission overwriting the executable but necessary to run the script in the docker container's file system.
 To fix this, use a DB client of your choice (e.g. pgadmin4), establish a connection to the database container's postgres server on port `5432`. Then, unravel the tree entries "Servers" > "\<database-container\>" > "Databases" and right-click on "Create" > "Database...".
-Create the `content_service`, `course_service`, `docprocai_service`, `flashcard_service`, `media_service`, `quiz_service`, `reward_service` & `skilllevel_service` databases by adding the strings to the "Database" entry in the "General" tab and add the "Privilege" entries ("PUBLIC", "Tc", "root") & ("root", "CTc", "root") in the "Security" tab.
+Create the `content_service`, `course_service`, `docprocai_service`, `flashcard_service`, `gamification_service`, `media_service`, `quiz_service`, `reward_service` & `skilllevel_service` databases by adding the strings to the "Database" entry in the "General" tab and add the "Privilege" entries ("PUBLIC", "Tc", "root") & ("root", "CTc", "root") in the "Security" tab.
 After doing these adjustments, the issue should be resolved.
 
 ## Observing/ Testing the GraphQL API
