@@ -15,4 +15,5 @@ Developer Manuals
    ./readthedocs/index
    ./scalability-testing/index
    ./services/index
+   ./settings/index
    
