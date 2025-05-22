@@ -1,0 +1,7 @@
+Settings
+============
+
+.. toctree::
+   :glob:
+
+   *
