@@ -1,10 +1,11 @@
 # Checklists
 
 ## Did I forget?
-- Link to the ticket in my mergerequest?
-- Any gamification elements? Check settings if gamification is enabled
-- Does my functionality send a notification to the user? If yes, check settings and send notification
-- Does the user complete any learning activity? Change user skill level (Skill level service)
+- **Merge**: Link to the ticket in my mergerequest?
+- **Gamification Element**: Check settings if gamification is enabled
+- **Notification**: Does my functionality send a notification to the user? If yes, check settings and send notification
+- **Learning Activity**: Does the user complete any learning activity? Change user skill level (Skill level service)
+- **Achievement**: Does the implemented functionality impact an achievement?
 
 ## Pipeline
 - Read ticket and related tickets
