@@ -1,9 +1,10 @@
 # Ports
+
 The Ports for the microservices get assigned after the following schema:
 
-* xx00 -> dapr port
-* xx01 -> server port
-* xx32 -> database port
+- xx00 -> dapr port
+- xx01 -> server port
+- xx32 -> database port
 
 Some services might use additonal ports, like the mediaservice.
 
@@ -208,6 +209,19 @@ Some services might use additonal ports, like the mediaservice.
 		<tr>
 			<td>Gamification Service</td>
 			<td>1201</td>
+			<td>no</td>
+			<td/>
+		</tr>
+		</tr>
+        <tr>
+			<td>AI Tutor Service</td>
+			<td>1300</td>
+			<td>yes</td>
+			<td>tutor_service</td>
+		</tr>
+		<tr>
+			<td>AI Tutor Service</td>
+			<td>1301</td>
 			<td>no</td>
 			<td/>
 		</tr>
