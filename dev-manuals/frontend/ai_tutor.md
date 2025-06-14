@@ -1,4 +1,4 @@
-# AI Tutor – Developer Documentation
+# AI Tutor Documentation
 
 This documentation provides an overview for developers working with the AI Tutor widget, which consists of the components `TutorAvatar.tsx`, `TutorChat.tsx`, and `TutorWidget.tsx`. It describes component responsibilities, API usage, and key areas for customization.
 
