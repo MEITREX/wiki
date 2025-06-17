@@ -2,7 +2,9 @@
 
 ## Did I forget?
 - **Merge**: Link to the ticket in my mergerequest?
-- **Gamification Element**: Check settings if gamification is enabled
+- **Gamification Element**: 
+	1) Check settings if gamification is enabled
+	2) Has a "widget" of that element been created on the course page? If no -> message PM (creates a separate ticket for that)
 - **Notification**: Does my functionality send a notification to the user? If yes, check settings and send notification
 - **Learning Activity**: Does the user complete any learning activity? Change user skill level (Skill level service)
 - **Achievement**: Does the implemented functionality impact an achievement?
