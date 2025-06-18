@@ -73,16 +73,7 @@ src/
 tbd
 - **Expected Response:**
 tbd
-- **Customization:**  
-  - Make sure your backend exposes this mutation.
-  - Adjust mutation/query and variable structure if your backend API differs.
-  - Handle authentication if the endpoint is protected.
 
-
-- **Customization:**  
-  - The query field (`recommendations`) and structure must match your backend.
-  - If recommendations depend on user context, ensure the backend provides appropriate data.
-  - The widget supports multiple recommendations, each with a close ("×") button; you can supply as many as needed.
 
 ---
 
@@ -140,24 +131,6 @@ tbd
 
 ---
 
-## Example Backend Schema (for reference)
-
-```graphql
-type Query {
-  recommendations: [Recommendation!]!
-}
-type Recommendation {
-  id: ID!
-  text: String!
-}
-type Mutation {
-  llmRequest(prompt: String!): LlmResponse!
-}
-type LlmResponse {
-  answer: String!
-  otherField: String
-}
-```
 
 ---
 
