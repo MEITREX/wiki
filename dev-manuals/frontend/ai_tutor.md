@@ -66,58 +66,19 @@ src/
 
 ### 1. Chat Backend (GraphQL)
 
-- **Location:** `TutorChat.tsx`
-- **Endpoint:** `/api/graphql` (adjust as needed)
+- **Location:** `TutorWdiget.tsx`
+- **Endpoint:** tbd
 - **Mutation Example:**
 
-  ```graphql
-  mutation LlmRequest($prompt: String!) {
-    llmRequest(prompt: $prompt) {
-      answer
-      otherField
-    }
-  }
-  ```
+tbd
 - **Expected Response:**
-  ```json
-  {
-    "data": {
-      "llmRequest": {
-        "answer": "The AI's response here.",
-        "otherField": "..."
-      }
-    }
-  }
-  ```
+tbd
 - **Customization:**  
   - Make sure your backend exposes this mutation.
   - Adjust mutation/query and variable structure if your backend API differs.
   - Handle authentication if the endpoint is protected.
 
-### 2. Recommendations Backend (GraphQL)
 
-- **Location:** `TutorWidget.tsx`
-- **Endpoint:** `/api/graphql` (adjust as needed)
-- **Query Example:**
-
-  ```graphql
-  query {
-    recommendations {
-      id
-      text
-    }
-  }
-  ```
-- **Expected Response:**
-  ```json
-  {
-    "data": {
-      "recommendations": [
-        { "id": "rec1", "text": "Try our new course on AI!" }
-      ]
-    }
-  }
-  ```
 - **Customization:**  
   - The query field (`recommendations`) and structure must match your backend.
   - If recommendations depend on user context, ensure the backend provides appropriate data.
