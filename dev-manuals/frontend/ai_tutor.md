@@ -24,7 +24,7 @@ This documentation provides an overview for developers working with the AI Tutor
 ## Project Structure
 
 ```
-src/
+components/tutor/
   TutorAvatar.tsx      // Dino avatar, floating action button
   TutorChat.tsx        // Chat window component, handles chat logic
   TutorWidget.tsx      // Main widget, manages avatar, chat, recommendations, welcome
