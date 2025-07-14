@@ -29,16 +29,102 @@ Via the 'Add course' button on the dashboard the lecturer can create a new cours
     - After clicking on "SAVE" flashcard is created successfully.
 
    3.2  ADD MEDIA
-- By adding Content details like name, date reward point and tags(optionally).
-- By adding media via "ADD MEDIA", lecturer can select media of any type like images, pdfs and videos etc.
-  ![add media](Images/add_media.png)
-- And on clicking "ADD FILES" lecturer can upload files.
-  ![upload media](Images/upload_media.png)
+    - By adding Content details like name, date reward point and tags(optionally).
+    - By adding media via "ADD MEDIA", lecturer can select media of any type like images, pdfs and videos etc.
+    ![add media](Images/add_media.png)
+    - And on clicking "ADD FILES" lecturer can upload files.
+      ![upload media](Images/upload_media.png)
 
 
-3.3  ADD QUIZ
-- Provide the quiz's information related to the content.
-  ![add quiz](Images/add_quiz.png)
+   3.3  ADD QUIZ
+   - Provide the quiz's information related to the content.
+     ![add quiz](Images/add_quiz.png)
+
+   3.4 ADD CODE ASSIGNMENT
+   - Ensure you are a member of MEITREX-ASSIGNMENTS Github organization.
+   - Ensure that **exactly one** Github Classroom exists with the same name as the MEITREX course.
+   - Create the assignment on the Github Classroom page:
+     - Provide a starter repository.
+     - Add a `README.md` file to the starter repository.
+     - Set student repository visibility to public (there's a bug on the Github side so it MUST NOT be private as of now)
+     - Add `yaml` autograding configuration as follows:
+```yaml
+name: Autograding Tests
+'on':
+  - push
+  - repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+        
+jobs:
+  run-autograding-tests:
+  runs-on: ubuntu-latest
+  if: github.actor != 'github-classroom[bot]'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+        
+    # Add further tests as specified below, and extend "env" and "with" sections with the added tests.
+    # "command" can be anything that runs tests, it doesn't matter if it is Gradle or any other tool. 
+    # ⚠️ Note: For tools like npm, you may need to install dependencies first.
+    # Example for JS:
+    # - name: Install NPM deps
+    #   run: npm install
+
+    - name: Deposit increases balance
+      id: deposit-increases-balance
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: BankTest - Deposit increases balance
+        command: 'gradle test --tests "bank.BankTest.testDepositIncreasesBalance"'
+        timeout: 1
+        max-score: 5
+        
+    - name: Add to cart and place order
+      id: shop-add-to-cart
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: OnlineShopTest - Add to cart and place order
+        command: 'gradle test --tests "shop.OnlineShopTest.testAddToCartAndPlaceOrder"'
+        timeout: 2
+        max-score: 5
+
+    # Template for additional tests:
+    - name: <TestName>
+      id: <test-id>
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: <TestGroupName> - <TestName>
+        command: '<command to run the test>'
+        timeout: <how long to wait for the test to complete in minutes>
+        max-score: <max score for this test>
+ 
+    # The test name must follow the format: `<TestGroupName> - <TestMethodName>`.
+    # Tests with the same group name will be grouped together in the feedback shown to students.
+
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        DEPOSIT-INCREASES-BALANCE_RESULTS: "${{steps.deposit-increases-balance.outputs.result}}"
+        SHOP-ADD-TO-CART_RESULTS: "${{steps.shop-add-to-cart.outputs.result}}"
+        # TEST-ID_RESULTS: "${{steps.test-id.outputs.result}}"
+      with:
+        # Add new test ids that must be executed. 
+        # They must be split only by a comma, nothing else in between (not even spaces)
+        runners: deposit-increases-balance,shop-add-to-cart
+ ```
+   - Feedback example based on a correct `yaml` configuration:
+     ![code feedback example](Images/code_feedback.png)
+   - After creating the assignment on Github Classrooom, go to MEITREX
+   - Click on "ADD CODE ASSIGNMENT" in the course content page.
+   - Sync the assignments from Github Classroom by clicking on "Sync Assignments" button.
+     ![sync code assignments](Images/sync_code_assignments.png)
+   - Select the assignment you want to add to the course.
+     ![synced code assignments](Images/synced_code_assignments.png)
+   - Provide the code assignment's information related to the content.
+     ![add code assignment](Images/add_code_assignment.png)
 
 ## Add contents details (MEDIA, FLASHCARD, QUIZ)
 

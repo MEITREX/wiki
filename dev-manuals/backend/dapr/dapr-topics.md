@@ -31,6 +31,9 @@ This includes
 * Quiz Service
     - Subscribes To: [content-changed](#topic-content-changed)
     - Publishes: [content-progressed](#topic-content-progressed), [item-changed](#topic-item-changed), [assessment-content-mutated](#topic-assessment-content-mutated)
+* Assignment Service
+  - Subscribes To: [content-changed](#topic-content-changed)
+  - Publishes: [content-progressed](#topic-content-progressed), [item-changed](#topic-item-changed), [assessment-content-mutated](#topic-assessment-content-mutated)
 * Reward Service
     - Subscribes To: [user-progress-updated](#topic-user-progress-updated), [course-changed](#topic-course-changed)
     - Publishes: nothing
@@ -111,7 +114,7 @@ This topic is used by the Content Service to inform Content-dependant Services o
 
 ## Topic: Item Changed
 
-This topic is used by the Quiz and Flashcard Service to inform Item-dependant Services of changes done to an Item Entity.
+This topic is used by the Quiz, Flashcard and Assignment Service to inform Item-dependant Services of changes done to an Item Entity.
 
 ### Interface Description
 
@@ -193,11 +196,11 @@ This topic is used to communicate that the content service has processed the upd
 Raised when the contents of an assessment were changed (e.g. a question of a quiz was added/removed/edited).
 
 ### Message Content
-| Field                 | Type                 | Description                                                                   |
-|-----------------------|----------------------|-------------------------------------------------------------------------------|
-| courseId              | UUID                 | The ID of the course the assessment which was mutated belongs to.             |
-| assessmentId          | UUID                 | The ID of the assessment which was mutated.                                   |
-| assessmentType        | Enum                 | One of either [QUIZ, FLASHCARDS] depending on the type of the assessment.     |
+| Field                 | Type                 | Description                                                                                            |
+|-----------------------|----------------------|--------------------------------------------------------------------------------------------------------|
+| courseId              | UUID                 | The ID of the course the assessment which was mutated belongs to.                                      |
+| assessmentId          | UUID                 | The ID of the assessment which was mutated.                                                            |
+| assessmentType        | Enum                 | One of either [QUIZ, FLASHCARDS, ASSIGNMENT] depending on the type of the assessment.                  |
 | textualRepresentation | List<String>         | Textual representations of the tasks of this assessment (and their solutions). For more info see below |
 
 ### Textual representation

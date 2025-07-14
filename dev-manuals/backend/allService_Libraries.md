@@ -35,9 +35,21 @@
 |:------------------|:---------:|:-------:|:------------------------------------------------------------------------|:------------------------------------------------------------------------------------|
 | **Media Service** | Minio SDK |  8.5.2  | Provides a client for interacting with the Minio object storage server. | [Minio SDK](https://min.io/docs/minio/linux/developers/minio-drivers.html#java-sdk) |
 
-| Service                                    |     Library     | Version | Purpose                            | Library Link |
-|:-------------------------------------------|:---------------:|:-------:|:-----------------------------------|:-------------|
-| **Reward Service**, **SkillLevel Service** | Content Service |  0.1.2  | Includes content service for DTOs. | -            |
+| Service                                  | Library | Version | Purpose                                                         | Library Link                                                                                                            |
+|:-----------------------------------------|:-------:|:-------:|:----------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|
+| **User Service**, **Assignment Service** |  Gson   | 2.13.1  | Used to parse and manipulate JSON responses from external APIs. | [Gson 2.13.1](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.13.1) |
+
+
+| Service                                                          |     Library     | Version | Purpose                            | Library Link |
+|:-----------------------------------------------------------------|:---------------:|:-------:|:-----------------------------------|:-------------|
+| **Reward Service**, **SkillLevel Service**                       | Content Service | 1.0.8   | Includes content service for DTOs. | -            |
+
+| Service                |     Library     | Version | Purpose                            | Library Link |
+|:-----------------------|:---------------:|:-------:|:-----------------------------------|:-------------|
+| **Assignment Service** | Course Service  |  0.1.0  | Includes course service for DTOs.  | -            |
+|                        |  User Service   |  0.1.0  | Includes user service for DTOs.    | -            |
+|                        | Content Service |  1.2.0  | Includes content service for DTOs. | -            |
+
 
 | Service                                                        |           Library           | Version | Purpose                                                                                                                                           | Library Link                                                                                                            |
 |:---------------------------------------------------------------|:---------------------------:|:-------:|:--------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|

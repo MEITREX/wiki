@@ -30,3 +30,9 @@ User Manuals
    :caption: Settings
 
    ./Settings
+
+ .. toctree::
+    :glob:
+    :caption: Forum
+
+    ./Forum
