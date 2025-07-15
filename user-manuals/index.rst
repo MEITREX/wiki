@@ -31,7 +31,7 @@ User Manuals
 
    ./Settings
 
- .. toctree::
+.. toctree::
     :glob:
     :caption: Forum
 
