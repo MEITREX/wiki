@@ -324,3 +324,75 @@ A general fail condition for all tests is that the view is not updated or data i
 **Successful Postconditions** The question has been deleted correctly and the changes are shown on the quiz page.
 
 **Failed postcondition** The question has not been deleted correctly and question is still shown on the quiz page. The lecturer is not notified of the error.
+
+## Code Assignments
+
+### Lecturer wants to add a code assignment
+
+**Test Item** The `AddCodeAssignmentModal.tsx` file and the `EditContentModal.tsx` in the `component` folder is to be tested.
+
+**Prerequisites** In the course there is at least one chapter with a section that has a stage. There exists a GitHub Classroom with the same name as the course and an assignment has been created there.
+
+**Step 1** The lecturer clicks the add content button within the stage of a section of a chapter &rarr; select content pop-up is shown
+
+**Step 2** The lecturer clicks on "Add code assignment" &rarr; sync code assignments pop-up
+
+**Step 3** Lecturer clicks on "sync code assignments" &rarr; code assignments are synced and sync code assignments pop-up with synced assignments is shown again
+
+**Step 4** Lecturer selects the code assignment he wants to add &rarr; add code assignment pop-up to input code assignment metadata
+
+**Step 5** Lecturer enters code assignment metadata and clicks on "add" &rarr; code assignment is added and select content pop-up is shown again
+
+**Step 6** Lecturer selects the code assignment he wants to add to the section and whether it is required and clicks "ok" &rarr; code assignment with given metadata is added
+
+**Successful Postconditions** The new code assignment is added and shown in the stage with the correct name and content type. The code assignment is shown within a reasonable timeframe *(< 60s)*.
+
+**Failed Postcondition** The code assignment is not added correctly (e.g. wrong media type) or the code assignment is not shown within a reasonable timeframe *(> 60s)*. Another fail condition is that the code assignment is not shown in the stage at all and was not added to the stage in the backend.
+
+### Lecturer wants to edit a code assignment
+
+**Test Item** The `lecturer.tsx` file in the `app/course/[courseId]/assignment/[assignmentId]` folder, as well as the `EditAssignmentModal.tsx` in the `components/assignment` folder, are to be tested.
+
+**Prerequisites** The lecturer is on the page of a code assignment that he has the permission to edit.
+
+**Step 1** The lecturer clicks the edit button in top right corner &rarr; editing pop-up shows up
+
+**Step 2** The lecturer changes the code assignment information and at the end submits the updated data &rarr; pop-up goes away
+
+**Successful postconditions** The code assignment information is saved successfully and when the edit pop-up is opened again it displays the updated values.
+
+**Failed postcondition** The code assignment information is not saved and the lecturer is shown an error message or the code assignment information is saved incorrect (e.g. wrong description).
+
+### Lecturer wants to delete a code assignment
+
+**Test Item** The `lecturer.tsx` file in the `app/course/[courseId]/assignment/[assignmentId]` folder is to be tested, as well as the `DeleteAssignmentButton.tsx` file in the `components/assignment` folder.
+
+**Prerequisites** The lecturer is on the page of a code assignment that he has the permission to edit.
+
+**Step 1** The lecturer clicks the delete button in top right corner &rarr; deletion pop-up shows up
+
+**Step 2** The lecturer accepts the deletion pop-up &rarr; pop-up goes away
+
+**Successful postconditions** The code assignment is deleted successfully in the UI and the database and the lecturer is redirected to the course page within a reasonable timeframe *(< 60s)*.
+
+**Failed postcondition** The code assignment is not deleted correctly (from database or UI) and the lecturer is shown an error message or the code assignment is deleted but the lecturer is not redirected to the course page.
+
+### Lecturer wants to fetch student grades for a code assignment
+
+**Test Item** The `lecturer.tsx` file in the `app/course/[courseId]/assignment/[assignmentId]` folder is to be tested.
+
+**Prerequisites**  
+The lecturer is on the page of a code assignment that students have accepted and submitted.
+
+**Step 1** The lecturer opens the code assignment page for a given course and assignment ID  
+&rarr; the assignment page loads
+
+**Step 2** The system automatically attempts to fetch student grades from the external grading system (e.g. GitHub Classroom)
+
+**Step 3** Grades are displayed in a table under the code assignment details
+
+**Successful Postconditions**  
+Student grades are displayed correctly in the UI, including name and score. The data is loaded within a reasonable timeframe *(< 60s)*. The system fetches the latest grades if they were updated externally.
+
+**Failed Postcondition**  
+The grades are not shown at all, shown incorrectly (e.g. missing students, wrong scores), or an error message is shown to the lecturer. Another fail condition is if the request to fetch grades silently fails without feedback and the UI remains stale or misleading.
