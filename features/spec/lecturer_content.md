@@ -331,7 +331,7 @@ A general fail condition for all tests is that the view is not updated or data i
 
 **Test Item** The `AddCodeAssignmentModal.tsx` file and the `EditContentModal.tsx` in the `component` folder is to be tested.
 
-**Prerequisites** In the course there is at least one chapter with a section that has a stage. There exists a GitHub Classroom with the same name as the course and an assignment has been created there.
+**Prerequisites** In the course there is at least one chapter with a section that has a stage. There exists a GitHub Classroom with the same name as the course and an assignment has been created there. The lecturer authorized the system to access the GitHub Classroom on his behalf (happens after clicking on "Add code assignment" if not authorized, for more info look at Student accessing a code assignment).
 
 **Step 1** The lecturer clicks the add content button within the stage of a section of a chapter &rarr; select content pop-up is shown
 
