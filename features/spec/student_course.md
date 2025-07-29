@@ -170,7 +170,49 @@ A general fail condition for all tests is that the view is not updated or data i
 
 **Failed postcondition** The student is not shown the message for empty quizzes or flashcards, but an error, or the time until the quizzes or flashcards are shown is too long *(> 10s)*.
 
-## Student accessing an incorrect URL (e.g. course, media, quiz, flashcard)
+## Student accessing a code assignment
+
+**Test Item** The `student.tsx` file in the `app/courses/[courseId]/assignment/[assignmentId]` folder, as well as related component files, are to be tested.
+
+**Prerequisites**  
+The student is logged in and on the course page, where a chapter with a section containing an accessible code assignment is present. 
+
+**Step 1** The student clicks on the code assignment in a stage of a section of a chapter  
+&rarr; the user is redirected to a page with the corresponding code assignment
+
+**Step 2** The student sees the assignment page  
+&rarr; the page shows the README content, automated test status, and the student's current grade (if available)
+
+**Step 3** The student clicks the "Start" button in the top right corner (or "Copy link" if the assignment has been already started)
+&rarr; the GitHub Classroom invitation link opens in a new tab, allowing the student to accept the assignment (if not yet accepted, otherwise the link is copied to the clipboard)
+
+**Successful Postconditions**  
+The student is shown the code assignment page with the README correctly rendered. The automated test status and grades are visible (if available). The "Start" button correctly opens the GitHub Classroom invitation in a new tab. The page loads within a reasonable timeframe *(< 60s)*, and navigation back to the course page works correctly.
+
+**Failed postcondition**  
+The student is not shown the code assignment page, the grade or test status is missing or incorrect, or the "Start" button does not work as expected. Another fail condition is that the page takes too long to load *(> 60s)* or crashes without feedback.
+
+## Student wants to fetch grades after submitting the code assignment
+
+**Test Item** The `student.tsx` file in the `app/courses/[courseId]/assignment/[assignmentId]` folder, as well as related component files, are to be tested.
+
+**Prerequisites**  
+The student has accepted the GitHub Classroom assignment, cloned the repository, pushed their code, and the autograding workflow has completed. The student is logged in and navigates to the corresponding code assignment page.
+
+**Step 1** The student opens the code assignment page  
+&rarr; the system checks for updated test results and grade information
+
+**Step 2 (alternative)** The student reloads the code assignment page  
+&rarr; the system re-fetches the latest test results and grade from GitHub Classroom
+
+**Successful Postconditions**  
+The student's latest grade and test results are displayed correctly on the assignment page within a reasonable timeframe *(< 60s)*. If grading has changed since the last visit, the new results are shown.
+
+**Failed postcondition**  
+The grade or test results are missing, outdated, or incorrect. The fetch fails silently or results in an error message. The page takes too long to update *(> 60s)* or displays stale information despite a successful code submission.
+
+
+## Student accessing an incorrect URL (e.g. course, media, quiz, flashcard, assignment)
 
 **Test Item** The `student.tsx` file for the corresponding case, as well as related component files, are to be tested.
 
