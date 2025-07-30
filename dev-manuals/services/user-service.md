@@ -21,3 +21,18 @@ This functionality is crucial for enabling external integrations (e.g., GitHub C
 
 A more technical description of the user service and its GraphQL endpoints can be found in our [Github Repository README](https://github.com/MEITREX/user_service#readme).
 
+## GitHub OAuth Configuration
+
+To enable GitHub access token handling, the User Service must be configured with valid OAuth2 credentials for GitHub.
+
+These credentials are used to:
+- Exchange authorization codes for access tokens
+- Refresh tokens when needed
+- Authenticate GitHub API requests on behalf of users
+
+| Environment | github.clientId      | github.clientSecret | Description                                        |
+|-------------|----------------------|---------------------|----------------------------------------------------|
+| dev         | Iv23liynxdcJafLw0ptQ | *dev secret*        | Used for local development and Docker environment. |
+| prod        | *secret*             | *secret*            | Used for production.                               |
+
+> **Note:** For development don’t forget to initialize `NEXT_PUBLIC_GITHUB_CLIENT_ID` in the frontend with `Iv23liynxdcJafLw0ptQ` as an environment variable.
