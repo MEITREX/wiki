@@ -44,6 +44,12 @@ app
 │   │   ├── page.tsx
 │   │   └── lecturer.tsx
 │   ├── [courseId]
+│   │   ├── assignment
+│   │   │   └── [assignmentId]
+│   │   │       ├── page.tsx
+│   │   │       ├── loading.tsx
+│   │   │       ├── lecturer.tsx
+│   │   │       └── student.tsx
 │   │   ├── flashcards
 │   │   │   └── [flashcardId]
 │   │   │       ├── page.tsx
