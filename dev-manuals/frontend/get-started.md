@@ -57,6 +57,15 @@ git clone https://github.com/MEITREX/frontend.git
     - To get relay to update your GraphQL fragments and queries, you probably need the [VSCode extension](#ide-setup)
 5. Open <http://localhost:3005> with your browser
 
+> **Note:** To enable GitHub Classroom integration needed for code assignments, make sure to set the `NEXT_PUBLIC_GITHUB_CLIENT_ID` environment variable.
+
+For local development, use:
+
+```bash
+NEXT_PUBLIC_GITHUB_CLIENT_ID=Iv23liynxdcJafLw0ptQ
+```
+For production, ensure this variable is configured in your deployment environment.
+
 ## IDE Setup
 
 We recommend using [VSCode](https://code.visualstudio.com/) as your IDE, because it offers proper support for TypeScript right of the bat.
