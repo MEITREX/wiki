@@ -41,8 +41,7 @@ Via the 'Add course' button on the dashboard the lecturer can create a new cours
      ![add quiz](Images/add_quiz.png)
 
    3.4 ADD CODE ASSIGNMENT
-   - Ensure you are a member of MEITREX-ASSIGNMENTS Github organization.
-   - Ensure that **exactly one** Github Classroom exists with the same name as the MEITREX course.
+   - Ensure that in your Github Organization **exactly one** Github Classroom exists with the same name as the MEITREX course.
    - Create the assignment on the Github Classroom page:
      - Provide a starter repository.
      - Add a `README.md` file to the starter repository.
@@ -92,7 +91,7 @@ jobs:
         max-score: 5
 
     # Template for additional tests:
-    - name: <TestName>
+    - name: <TestName> # will be shown in the students' feedback summary 
       id: <test-id>
       uses: classroom-resources/autograding-command-grader@v1
       with:
@@ -109,6 +108,7 @@ jobs:
       env:
         DEPOSIT-INCREASES-BALANCE_RESULTS: "${{steps.deposit-increases-balance.outputs.result}}"
         SHOP-ADD-TO-CART_RESULTS: "${{steps.shop-add-to-cart.outputs.result}}"
+        # for each additional test, add a new environment variable
         # TEST-ID_RESULTS: "${{steps.test-id.outputs.result}}"
       with:
         # Add new test ids that must be executed. 
@@ -117,6 +117,25 @@ jobs:
  ```
    - Feedback example based on a correct `yaml` configuration:
      ![code feedback example](Images/code_feedback.png)
+
+   - Each failed test's output from the Github Actions run, which is used for autograding, will appear in the dropdown of the corresponding test in MEITREX. Use such configuration that provides meaningful feedback to students.
+     E.g. for `Gradle KTS` the following configuration will result in a output similar to the one shown below:
+
+```kotlin
+    tasks.withType<Test>().configureEach {
+        testLogging {
+            events("passed", "skipped", "failed")
+            showExceptions = true
+            showCauses = true
+            showStackTraces = true
+            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+            showStandardStreams = true
+        }
+    }
+``` 
+
+![not passed code feedback example](Images/not_passed_test_feedback.png)
+
    - After creating the assignment on Github Classrooom, go to MEITREX
    - Click on "ADD CODE ASSIGNMENT" in the course content page.
    - Sync the assignments from Github Classroom by clicking on "Sync Assignments" button.
