@@ -36,6 +36,8 @@ It is defined using the property: `github.organization_name`
 The organization used varies depending on the environment:
 
 | Environment | GitHub Organization | Description                                       |
-|-------------|---------------------|---------------------------------------------------|
-| `dev`       | `MEITREX-TEST`      | Used for local development and Docker environment.|
-| `prod`      | `MEITREX`           | Used for production.                              |
+|-------------|-----------------|---------------------------------------------------|
+| `dev`       | `MEITREX-TEST`  | Used for local development and Docker environment.|
+| `prod`      | `MEITREX`       | Used for production.                              |
+
+**Note:** Check the [User Service](./user-service.md) for more information on how to set up the GitHub OAuth credentials.

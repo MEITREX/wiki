@@ -36,3 +36,25 @@ These credentials are used to:
 | prod        | *secret*             | *secret*            | Used for production.                               |
 
 > **Note:** For development don’t forget to initialize `NEXT_PUBLIC_GITHUB_CLIENT_ID` in the frontend with `Iv23liynxdcJafLw0ptQ` as an environment variable.
+
+The MEITREX-TEST GitHub App has already been created for development. Ask a team member or your supervisor for the dev secret.
+
+However, if you want to create your own GitHub App for development, follow the steps below (you’ll need access to your GitHub Organization).
+
+### Setting up GitHub App Credentials 
+
+To set up a Github App (for dev or prod), follow these steps:
+
+1. Go to Organization Settings.
+2. Navigate to Developer Settings.
+3. Click on "GitHub Apps".
+4. Click "New GitHub App".
+5. Fill the following fields with the provided values:
+   - User authorization callback URL: http://localhost:3005/oauth/callback (for development, replace with production URL in production)
+   - Repository permissions: 
+     - Actions: Read-only
+   - Where can this GitHub App be installed? Any account
+6. Click "Create GitHub App".
+7. Generate a new client secret and copy it with the client ID to the User Service configuration.
+8. Copy the Github App name and set the Organization name in the Assignment Service configuration.
+9. Set the client ID in the frontend environment variable `NEXT_PUBLIC_GITHUB_CLIENT_ID`.
