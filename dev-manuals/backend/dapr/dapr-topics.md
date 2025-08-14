@@ -24,7 +24,7 @@ This includes
     - Publishes: [content-changed](#topic-content-changed), [user-progress-updated](#topic-user-progress-updated)
 * Media Service
     - Subscribes To: [content-changed](#topic-content-changed)
-    - Publishes: [content-progressed](#topic-content-progressed), [media-record-file-created](#topic-media-record-file-created), [media-record-deleted](#topic-media-record-deleted), [content-media-record-links-set](#topic-content-media-record-links-set)
+    - Publishes: [content-progressed](#topic-content-progressed), [media-record-file-created](#topic-media-record-file-created), [media-record-deleted](#topic-media-record-deleted), [content-media-record-links-set](#topic-content-media-record-links-set), [forum-activity](#topic-forum-activity)
 * Flashcard Service
     - Subscribes To: [content-changed](#topic-content-changed)
     - Publishes: [content-progressed](#topic-content-progressed), [item-changed](#topic-item-changed), [assessment-content-mutated](#topic-assessment-content-mutated)
@@ -43,7 +43,9 @@ This includes
 * DocProcAi Service
     - Subscribes To: [media-record-file-created](#topic-media-record-file-created), [media-record-deleted](#topic-media-record-deleted), [content-media-record-links-set](#topic-content-media-record-links-set), [assessment-content-mutated](#topic-assessment-content-mutated), [content-changed](#topic-content-changed)
     - Publishes: nothing
-
+* Gamification Service
+    - Subscribes To: [user-progress-updated](#topic-user-progress-updated), [content-progressed](#topic-content-progressed), [forum-activity](#topic-forum-activity)
+    - Publishes: nothing
 
 ## Topic: Course Changed
 
@@ -266,3 +268,14 @@ Raised when a `MediaContent`'s media record links are set/changed.
 |----------------|----------------------|-------------------------------------------------------------------------------|
 | contentId      | UUID                 | The ID of the content whose media record links were set.                      |
 | mediaRecordId  | List<UUID>           | List of the IDs of the media records which were linked to the content.        |
+
+
+## Topic: Forum Activity
+
+| Field    | Type          | Description                                       |
+|----------|---------------|---------------------------------------------------|
+| forumId  | UUID          | The ID of the forum where the activity happened.  |
+| courseId | UUID          | The ID of the course where the activity happened. |
+| userId   | UUID          | The ID of the user that did the activity.         |
+| activity | ForumActivity | The kind of activity that happened.               |
+
