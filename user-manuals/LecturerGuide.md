@@ -40,6 +40,7 @@ Via the 'Add course' button on the dashboard the lecturer can create a new cours
    - Provide the quiz's information related to the content.
      ![add quiz](Images/add_quiz.png)
 
+   (a-code-assignment)=
    3.4 ADD CODE ASSIGNMENT
    - Ensure that in your Github Organization, which will be used to store students repositories, **exactly one** Github Classroom exists with the same name as the MEITREX course.
    - Create the assignment on the Github Classroom page:
