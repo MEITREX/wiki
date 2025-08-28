@@ -1,7 +1,7 @@
-# AI Tutor Backend
+# AI Tutor Chat/Questions
 
 This document gives a short overview on how workflow of the AI Tutor works, when the student/user asks the tutor a question.
-The frontend implementation of the AI Tutor can be found [here](../frontend/ai_tutor.md).
+The documentation of the AI Tutor frontend implementation can be found [here](../../frontend/ai_tutor.md).
 
 ---
 

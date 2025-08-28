@@ -6,6 +6,7 @@ Backend
    :glob:
 
    ./dapr/index
+   ./ai-tutor/index
 
 .. toctree::
    :glob:
