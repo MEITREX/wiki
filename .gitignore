@@ -10,3 +10,7 @@ html/
 
 ### IntelliJ ###
 .idea
+
+### venv ###
+venv/
+.venv/
