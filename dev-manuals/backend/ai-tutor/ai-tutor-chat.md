@@ -86,6 +86,7 @@ To build the links and display them in the message of the AI Tutor more informat
 4. Add a preprocessing step that generates better search-keys for the semantic search instead of using the whole user question
 5. Extend the mutation to use the Chat History to be able answer follow up questions
 6. Add the name of the course the user is inside of the preprocessing prompt to better decide if the question is about this course/topic
+7. If named of courses are useful retrieve the names of all courses the user is enrolled in and use LLM to find out which course this question could belong to
 
 ## Prompts
 The used prompts are situated in the `prompt_templates` folder under resources in the `tutor_service` => `src/main/resources/prompt_templates`

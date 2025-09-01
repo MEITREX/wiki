@@ -46,6 +46,9 @@ This includes
 * Gamification Service
     - Subscribes To: [user-progress-updated](#topic-user-progress-updated), [content-progressed](#topic-content-progressed), [forum-activity](#topic-forum-activity)
     - Publishes: nothing
+* Tutor Service
+    - Subscribes to: nothing
+    - Published: [asked-tutor-a-question](#topic-asked-tutor-a-question)
 
 ## Topic: Course Changed
 
@@ -278,4 +281,14 @@ Raised when a `MediaContent`'s media record links are set/changed.
 | courseId | UUID          | The ID of the course where the activity happened. |
 | userId   | UUID          | The ID of the user that did the activity.         |
 | activity | ForumActivity | The kind of activity that happened.               |
+
+## Topic: Asked Tutor a Question
+
+Raised when the user asks the AI Tutor a question, BUT only after the question has been categorised
+
+| Field    | Type          | Description                                                                 |
+|----------|---------------|-----------------------------------------------------------------------------|
+| courseId | UUID          | The ID of the course the question is about happened.                        |
+| userId   | UUID          | The ID of the user that asked the question.                                 |
+| category | TutorCategory | The Category the question fits into (SYSTEM, LECTURE, OTHER, UNRECOGNIZABLE)|
 
