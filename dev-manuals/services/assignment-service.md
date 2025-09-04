@@ -27,3 +27,11 @@ The assignment service tracks how much of an assignment a student has completed 
 - *Correctness* is derived from the ratio of achieved to total credits.
 - For code assignments, results are fetched from GitHub Classroom and displayed in MEITREX.
 - When grading is complete, the service emits a `ContentProgressedEvent`, which informs the content service and triggers updates across other services (e.g., skill level, rewards).
+
+
+## GitHub Classroom Integration
+
+To enable integration with GitHub Classroom, the **Assignment Service** requires users to authorize **MEITREX** via OAuth.  
+The Assignment Service then uses the OAuth token to access GitHub Classroom APIs for querying classrooms, assignments, and grades.
+
+**Note:** See the [User Service](./user-service.md) documentation for details on setting up the GitHub OAuth credentials.
