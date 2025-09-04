@@ -84,9 +84,9 @@ Filenames are: `question_prompt_{QUESTION_TYPE}.md`
   {{options}}
   ```
 </details>
-- Question text is the normal text of the multiple choice question
-- Answer options are given as numbered list of the string
-- Semantic search query is the question text
+ - Question text is the normal text of the multiple choice question
+ - Answer options are given as numbered list of the string
+ - Semantic search query is the question text
 
 <details>
   <summary>Question Prompt for 'ASSOCIATION': </summary>
@@ -103,9 +103,9 @@ Filenames are: `question_prompt_{QUESTION_TYPE}.md`
   {{options}}
   ```
 </details>
-- Question text is the normal text of the association question
-- Answer options are given as numbered list with the format `Left: <value left> <-> Right: <value right>`
-- Semantic search query is the question text
+ - Question text is the normal text of the association question
+ - Answer options are given as numbered list with the format `Left: <value left> <-> Right: <value right>`
+ - Semantic search query is the question text
 
 <details>
   <summary>Question Prompt for 'CLOZE': </summary>
@@ -122,6 +122,6 @@ Filenames are: `question_prompt_{QUESTION_TYPE}.md`
   {{options}}
   ```
 </details>
-- Question text is the cloze with fillers like `[1], [2]` to fill in the blanks
-- Answer options are given as numbered list of the answers of these blanks (numbers correspond to the numbers in the cloze)
-- Semantic search query is the filled cloze
+ - Question text is the cloze with fillers like `[1], [2]` to fill in the blanks
+ - Answer options are given as numbered list of the answers of these blanks (numbers correspond to the numbers in the cloze)
+ - Semantic search query is the filled cloze
