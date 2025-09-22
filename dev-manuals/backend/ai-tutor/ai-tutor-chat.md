@@ -46,7 +46,8 @@ This endpoint returns `Document`, `Video` and `Assessment` segments that fit the
 The returned list is sorted with a similarity score between 0 and 1, where a score closer to 0 means that this segment has content similiar to the question.
 
 4. Validation
-Ensures the semantic search does not return an empty list.
+Threshold the found segments based on similarity score (currently 0.4 or less as closer to 0 is better => Configurable in `application.properties`)
+Validates that at least one relevant segment was found
 
 5. Relevance List Construction
 Concatenate the retrieved content snippets into a numbered list (string).
@@ -80,13 +81,13 @@ To build the links and display them in the message of the AI Tutor more informat
 >ℹ️ **Info:** In the code, pages are zero-indexed (the first page is 0), but in URLs and the media display, pages are one-indexed (the first page is 1)
 
 ## Possible Improvements
-1. Thresholding the score of the semanticSearch results, as currently all segments are returned (highest score in tests was approximately 0.6)
-2. When answering let the LLM **always** reference the number of the segment it used for this answer 
-3. Only generate the links for the sources that specifically had been used in the answer instead of all that were fed into the LLM
-4. Add a preprocessing step that generates better search-keys for the semantic search instead of using the whole user question
-5. Extend the mutation to use the Chat History to be able answer follow up questions
-6. Add the name of the course the user is inside of the preprocessing prompt to better decide if the question is about this course/topic
-7. If named of courses are useful retrieve the names of all courses the user is enrolled in and use LLM to find out which course this question could belong to
+1. [x] Thresholding the score of the semanticSearch results, as currently all segments are returned (highest score in tests was approximately 0.6)
+2. [ ] When answering let the LLM **always** reference the number of the segment it used for this answer 
+3. [ ] Only generate the links for the sources that specifically had been used in the answer instead of all that were fed into the LLM
+4. [ ] Add a preprocessing step that generates better search-keys for the semantic search instead of using the whole user question
+5. [ ] Extend the mutation to use the Chat History to be able answer follow up questions
+6. [ ] Add the name of the course the user is inside of the preprocessing prompt to better decide if the question is about this course/topic
+7. [ ] If names of courses are useful retrieve the names of all courses the user is enrolled in and use LLM to find out which course this question could belong to
 
 ## Prompts
 The used prompts are situated in the `prompt_templates` folder under resources in the `tutor_service` => `src/main/resources/prompt_templates`
