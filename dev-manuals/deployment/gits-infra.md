@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `infrastructure` repository contains the Terraform scripts responsible for orchestrating the deployment of the MEITREX Platform on a Kubernetes cluster.
+This repository contains the Terraform scripts responsible for orchestrating the deployment of the MEITREX Platform on a Kubernetes cluster.
 
 ## Deployment Approach
 
@@ -20,21 +20,22 @@ Keel serves as our CI tool, automating the update process for our Kubernetes res
 
 ### Ingress Configuration
 
-All services are exposed through an Nginx ingress that is presumed to already exist in the target cluster. This ingress handles routing and SSL termination, providing a unified access point to various services. Currently, self-signed certs are used due to the difficulty of using Let's Encrypt without a public endpoint. While this would be possible using DNS validation, this is complex to setup and requires a supported DNS provider.
+All services are exposed through an Nginx ingress that is presumed to already exist in the target cluster. This ingress handles routing and SSL termination, providing a unified access point to various services. Since the ingress of our cluster is not publicly available, we route the traffic over the ingress of a different cluster. This second ingress controller handles SSL certificates via Let's Encrypt and is publicly available. 
 
 ### meitrex.de
 
-We own the domain `meitrex.de`, which is currently only used for exposing the Minio service. This is a workaround to the cluster's limitation of having a single DNS entry, `orange.informatik.uni-stuttgart.de`. Minio requires its own subdomain, making this arrangement necessary. The domain is owned and managed by Valentin (GitHub: v-morlock). It could also be used to expose the whole system under a nicer domain and possibly enable obtaining trusted SSL certs.
+We own the domain `meitrex.de`, which is currently only used for exposing the development version of MEITREX under the sub-domain `dev.meitrex.de`. The MINIO service endpoint under `minio.meitrex.de` and the corresponding dashboard under `minio-dashboard.meitrex.de`.
 
 ## Repository Structure
 
 ### General Infrastructure Resources
 
-- **main.tf**: Defines the Kubernetes namespace `gits` and establishes image pull secrets required for pulling Docker images from external repositories.
+- **main.tf**: Defines the Kubernetes namespace `meitrex`.
 - **ingress.tf**: Sets up the Nginx ingress for managing external access. Configurations for SSL redirection and proxy buffer sizes are also defined here. All services to be exposed have to be configured here.
 - **dapr.tf**: Deploys the Dapr runtime using Helm charts. Also includes the setup for state and pub-sub components using Redis.
 - **keel.tf**: Manages the deployment of Keel, a tool used for automated Kubernetes deployments, via Helm charts.
-- **keycloak.tf**: Handles the setup for Keycloak, used for identity and access management. It utilizes Helm charts for deployment and includes admin user and password settings.
+- **keycloak.tf**: Handles the setup for Keycloak, used for identity and access management. It utilises Helm charts for deployment and includes admin user and password settings.
+- **prometheus.tf**: Deploys the Prometheus stack into a separate namespace to monitor the MEITREX application.
 
 ### Frontend Deployment
 
@@ -58,25 +59,27 @@ The GraphQL Gateway, configured in `gateway.tf`, serves as the central entry poi
 
 - **Kubernetes Cluster**: A running cluster with admin access, a working Nginx ingress controller, the capability to deploy Persistent Volumes and Load Balancers. Place the cluster credentials in a `kubeconfig.yaml` file within the repository.
 - **Terraform CLI**: Ensure you have version >= 1.0.11 installed.
-- **University VPN**: If managing the existing cluster, a connection to the university's VPN is required.
+- **University VPN**: If managing the existing cluster, a connection to the university's VPN is required. Additionally, if you want to manage the Resources on the GPU PC you need to have a connection to the Informatik VPN. 
 - **Terraform State**: For managing the existing cluster, obtain and place the current Terraform state within the repository.
-- **`variables.tf`**: Either create a new `variables.tf` file or obtain the existing one when managing the existing cluster. To generate a GitHub token for pulling images, log in to Docker and execute the following shell command to create a new `terraform.tfvars` file:
-  ```sh
-  echo "image_pull_secret = \"$(cat ~/.docker/config.json | tr -d '[:space:]' | sed -e s/\"/\\\\\"/g)\"" > terraform.tfvars
-  ```
+- **`variables.tf`**: Either create a new `variables.tf` file or obtain the existing one when managing the existing cluster. 
 
 ### Getting Started
 
 1. **Clone the Repository**: Clone this Terraform repository to your local machine.
 2. **Navigate to the Repo**: Open a terminal and navigate to the repository directory.
 3. **Setup**: Ensure all prerequisites are met as outlined in the Prerequisites section.
-4. **Initialize Terraform**: Run `terraform init` to initialize the Terraform workspace.
+4. **Initialise Terraform**: Run `terraform init` to initialise the Terraform workspace.
 5. **Apply Configuration**: Execute `terraform apply` to deploy the resources to your Kubernetes cluster.
+6. **Setup keycloak realm**: Login into keycloak under `https://dev.meitrex.de/keycloak` with admin credentials. Set up the Keycloak realm with the configuration in the frontend repository. 
+7. **Setup webhook for AI Service**: Log in to the minio instance under `https://minio-dashboard.meitrex.de` and add the webhook to all buckets. 
+
+For steps 6 & 7, more detailed guides are available [here](setup.md). 
 
 ### Troubleshooting
 
-- **Expired GitHub Token**: GitHub tokens used for pulling images expire occasionally. If you encounter issues related to image pulls, regenerate the token and update `terraform.tfvars`.
 - **Disappearing Dapr Sidecars**: If Dapr sidecars disappear, causing communication to stop working in the cluster, try restarting the affected deployments.
 - **Schema Changes in Services**: If there are schema changes in individual services without changes in the gateway code, a restart of the gateway deployment is required.
+- **Setting Environment Variables for a Spring Service**: If you want to add a service to this deployment and it is a Spring Boot Service, you can set environment variables which are defined in the properties files as follows. Set in the Terraform the env example.property as EXAMPLE_PROPERTY. Replace all . with _ and write in capital letters. Spring will automatically set the value.
 
-Hint: For easier management and debugging, it helps to use a Kubernetes management UI like Lens to connect to the cluster, restart deployments or setup port forwarding.
+Hint: For easier management and debugging, it helps to use a Kubernetes management UI like Lens to connect to the cluster, restart deployments or set up port forwarding.
+
