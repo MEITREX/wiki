@@ -27,19 +27,19 @@ Some services might use additonal ports, like the mediaservice.
 			<td/>
 		</tr>
 		<tr>
-			<td>Course Service  </td>
+			<td>Course Service</td>
 			<td>2000</td>
 			<td>yes</td>
 			<td>course_service</td>
 		</tr>
 		<tr>
-			<td>Course Service </td>
+			<td>Course Service</td>
 			<td>2001</td>
 			<td>no</td>
 			<td/>
 		</tr>
 		<tr>
-			<td>Course Service DB </td>
+			<td>Course Service DB</td>
 			<td>2032</td>
 			<td>no</td>
 			<td/>
@@ -51,7 +51,7 @@ Some services might use additonal ports, like the mediaservice.
 			<td>media_service</td>
 		</tr>
 		<tr>
-			<td>Media service</td>
+			<td>Media Service</td>
 			<td>3001</td>
 			<td>no</td>
 			<td/>
@@ -69,8 +69,26 @@ Some services might use additonal ports, like the mediaservice.
 			<td/>
 		</tr>
 		<tr>
-			<td>MinIO console </td>
+			<td>MinIO console</td>
 			<td>3011</td>
+			<td>no</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>Notification Service</td>
+			<td>3100</td>
+			<td>yes</td>
+			<td>notification_service</td>
+		</tr>
+		<tr>
+			<td>Notification Service</td>
+			<td>3101</td>
+			<td>no</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>Notification Service DB</td>
+			<td>3132</td>
 			<td>no</td>
 			<td/>
 		</tr>
@@ -183,24 +201,6 @@ Some services might use additonal ports, like the mediaservice.
 			<td/>
 		</tr>
 		<tr>
-			<td>Notification Service</td>
-			<td>1000</td>
-			<td>yes</td>
-			<td>notification_service</td>
-		</tr>
-		<tr>
-			<td>Notification Service</td>
-			<td>1001</td>
-			<td>no</td>
-			<td/>
-		</tr>
-		<tr>
-			<td>Notification Service DB</td>
-			<td>1032</td>
-			<td>no</td>
-			<td/>
-		</tr>
-		<tr>
 			<td>Assignment Service</td>
 			<td>1100</td>
 			<td>yes</td>
@@ -218,7 +218,7 @@ Some services might use additonal ports, like the mediaservice.
 			<td>no</td>
 			<td/>
 		</tr>
-        <tr>
+		<tr>
 			<td>Gamification Service</td>
 			<td>1200</td>
 			<td>yes</td>
@@ -230,7 +230,7 @@ Some services might use additonal ports, like the mediaservice.
 			<td>no</td>
 			<td/>
 		</tr>
-        <tr>
+		<tr>
 			<td>AI Tutor Service</td>
 			<td>1300</td>
 			<td>yes</td>
