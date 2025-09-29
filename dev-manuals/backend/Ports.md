@@ -183,6 +183,24 @@ Some services might use additonal ports, like the mediaservice.
 			<td/>
 		</tr>
 		<tr>
+			<td>Notification Service</td>
+			<td>1000</td>
+			<td>yes</td>
+			<td>notification_service</td>
+		</tr>
+		<tr>
+			<td>Notification Service</td>
+			<td>1001</td>
+			<td>no</td>
+			<td/>
+		</tr>
+		<tr>
+			<td>Notification Service DB</td>
+			<td>1032</td>
+			<td>no</td>
+			<td/>
+		</tr>
+		<tr>
 			<td>Assignment Service</td>
 			<td>1100</td>
 			<td>yes</td>
@@ -211,7 +229,6 @@ Some services might use additonal ports, like the mediaservice.
 			<td>1201</td>
 			<td>no</td>
 			<td/>
-		</tr>
 		</tr>
         <tr>
 			<td>AI Tutor Service</td>
