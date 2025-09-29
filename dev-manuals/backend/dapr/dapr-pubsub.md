@@ -23,7 +23,7 @@ implementation 'io.dapr:dapr-sdk-springboot:1.9.0' // Dapr's SDK integration wit
 
 Create a class which is annotated with `@RestController`. Like a regular rest controller, it will contain methods which map to different endpoints. (These rest endpoints will be invoked by dapr automatically when a new message for the event is published)
 
-Create a method annotated with `@PostMapping(path = "/path-of-your-choice")` and `@Topic(name = "topic name of your choice", pubsubName = "gits")`. The `name` argument tells dapr what topic you want this endpoint to be subscribed to. `pubsubName` must always be `gits`.
+Create a method annotated with `@PostMapping(path = "/path-of-your-choice")` and `@Topic(name = "topic name of your choice", pubsubName = "gits")`. The `name` argument tells dapr what topic you want this endpoint to be subscribed to. `pubsubName` must always be `meitrex`.
 
 Arguments of the method are the headers of the request and the body, for which a `CloudEvent` can be used to easily serialize and deserialize Java objects to transmit them via the message bus (not just Strings as in the example).
 
@@ -32,7 +32,7 @@ Example:
 ```java
 @RestController
 public class PubsubSubscriberController {
-    @Topic(name = "resource-creation", pubsubName = "gits")
+    @Topic(name = "resource-creation", pubsubName = "meitrex")
     @PostMapping(path = "/media-service-pubsub")
     public Mono<Void> handleMessage(@RequestBody(required = false) CloudEvent<String> cloudEvent, @RequestHeader Map<String, String> headers) {
         return Mono.fromRunnable(() -> {
