@@ -43,7 +43,7 @@ Notes:
 
 ---
 
-## 3) Publish (pick **one**)
+## 3) Publish
 
 **Java + Dapr SDK**
 
