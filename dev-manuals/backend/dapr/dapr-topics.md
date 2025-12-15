@@ -44,11 +44,17 @@ This includes
     - Subscribes To: [media-record-file-created](#topic-media-record-file-created), [media-record-deleted](#topic-media-record-deleted), [content-media-record-links-set](#topic-content-media-record-links-set), [assessment-content-mutated](#topic-assessment-content-mutated), [content-changed](#topic-content-changed)
     - Publishes: nothing
 * Gamification Service
-    - Subscribes To: [user-progress-updated](#topic-user-progress-updated), [content-progressed](#topic-content-progressed), [forum-activity](#topic-forum-activity)
-    - Publishes: nothing
+    - Subscribes To: [user-progress-updated](#topic-user-progress-updated), [content-progressed](#topic-content-progressed), [forum-activity](#topic-forum-activity), [request-hexad-player-type](#topic-request-hexad-player-type), [request-user-skill-level](#topic-request-user-skill-level)
+    - Publishes: [user-hexad-player-type-set](#topic-user-hexad-player-type-set)
 * Tutor Service
     - Subscribes to: nothing
-    - Published: [asked-tutor-a-question](#topic-asked-tutor-a-question)
+    - Publishes: [asked-tutor-a-question](#topic-asked-tutor-a-question)
+* Assignment Service
+    - Subscribes To: [content-changed](#topic-content-changed)
+    - Publishes: [content-progressed](#topic-content-progressed), [item-changed](#topic-item-changed), [assessment-content-mutated](#topic-assessment-content-mutated), [student-code-submitted](#topic-student-code-submitted)
+* Skilllevel Service
+    - Subscribes To: [user-progress-updated](#topic-user-progress-updated), [course-changed](#topic-course-changed), [request-user-skill-level](#topic-request-user-skill-level)
+    - Publishes: nothing
 
 ## Topic: Course Changed
 
@@ -286,9 +292,102 @@ Raised when a `MediaContent`'s media record links are set/changed.
 
 Raised when the user asks the AI Tutor a question, BUT only after the question has been categorised
 
-| Field    | Type          | Description                                                                 |
-|----------|---------------|-----------------------------------------------------------------------------|
-| courseId | UUID          | The ID of the course the question is about happened.                        |
-| userId   | UUID          | The ID of the user that asked the question.                                 |
-| category | TutorCategory | The Category the question fits into (SYSTEM, LECTURE, OTHER, UNRECOGNIZABLE)|
+| Field    | Type          | Description                                                                                      |
+|----------|---------------|--------------------------------------------------------------------------------------------------|
+| courseId | UUID          | The ID of the course the question is about happened.                                             |
+| userId   | UUID          | The ID of the user that asked the question.                                                      |
+| category | TutorCategory | The Category the question fits into (SYSTEM, LECTURE, OTHER, UNRECOGNIZABLE, ERROR, CODE_FEEDBACK)|
+
+## Topic: User Hexad Player Type Set
+
+Raised when the player type is saved inside of gamification_service. This event is sent when a user's Hexad player type is set, updated, or requested for the first time.
+
+### Interface Description
+
+<dl>
+<dt>Name</dt>
+<dd>user-hexad-player-type-set</dd>
+<dt>PubSub-Name</dt>
+<dd>gits</dd>
+<dt>Java class</dt>
+<dd><a href="https://github.com/MEITREX/common/blob/main/src/main/java/de/unistuttgart/iste/meitrex/common/event/UserHexadPlayerTypeSetEvent.java">UserHexadPlayerTypeSetEvent</a></dd>
+</dl>
+
+### Message Content
+
+| Field                 | Type                          | Description                                                    |
+|-----------------------|-------------------------------|----------------------------------------------------------------|
+| userId                | UUID                          | The ID of the user whose Hexad player type was set.            |
+| playerType            | HexadPlayerType               | The Hexad player type of the user (ACHIEVER, PLAYER, SOCIALISER, FREE_SPIRIT, PHILANTHROPIST, DISRUPTOR). |
+| playerTypeScores      | Map<HexadPlayerType, Integer> | Map of all player types to their respective scores.            |
+
+## Topic: Request Hexad Player Type
+
+Used to request a user's Hexad player type from the gamification service. The gamification service will respond with a [user-hexad-player-type-set](#topic-user-hexad-player-type-set) event.
+
+### Interface Description
+
+<dl>
+<dt>Name</dt>
+<dd>request-hexad-player-type</dd>
+<dt>PubSub-Name</dt>
+<dd>gits</dd>
+<dt>Java class</dt>
+<dd><a href="https://github.com/MEITREX/common/blob/main/src/main/java/de/unistuttgart/iste/meitrex/common/event/RequestHexadPlayerTypeEvent.java">RequestHexadPlayerTypeEvent</a></dd>
+</dl>
+
+### Message Content
+
+| Field  | Type | Description                                                |
+|--------|------|------------------------------------------------------------||
+| userId | UUID | The ID of the user for which the player type is requested. |
+
+## Topic: Request User Skill Level
+
+Used to request a user's skill levels from the skilllevel service. The skilllevel service will respond with a user-skill-level-changed event.
+
+### Interface Description
+
+<dl>
+<dt>Name</dt>
+<dd>request-user-skill-level</dd>
+<dt>PubSub-Name</dt>
+<dd>gits</dd>
+<dt>Java class</dt>
+<dd><a href="https://github.com/MEITREX/common/blob/main/src/main/java/de/unistuttgart/iste/meitrex/common/event/RequestUserSkillLevelEvent.java">RequestUserSkillLevelEvent</a></dd>
+</dl>
+
+### Message Content
+
+| Field  | Type | Description                                              |
+|--------|------|----------------------------------------------------------|
+| userId | UUID | The ID of the user for which skill levels are requested. |
+
+## Topic: Student Code Submitted
+
+Raised when a student submits code for an assignment. This event is triggered by the assignment service when it loads and processes a student's code submission from their repository.
+
+### Interface Description
+
+<dl>
+<dt>Name</dt>
+<dd>student-code-submitted</dd>
+<dt>PubSub-Name</dt>
+<dd>gits</dd>
+<dt>Java class</dt>
+<dd><a href="https://github.com/MEITREX/common/blob/main/src/main/java/de/unistuttgart/iste/meitrex/common/event/StudentCodeSubmittedEvent.java">StudentCodeSubmittedEvent</a></dd>
+</dl>
+
+### Message Content
+
+| Field              | Type             | Description                                                                 |
+|--------------------|------------------|-----------------------------------------------------------------------------|
+| studentId          | UUID             | ID of the student who submitted the code.                                   |
+| assignmentId       | UUID             | ID of the assignment for which the code was submitted.                      |
+| courseId           | UUID             | ID of the course the assignment belongs to.                                 |
+| repositoryUrl      | String           | URL of the Git repository containing the submitted code.                    |
+| commitHash         | String           | Git commit hash identifying the exact submission.                           |
+| submittedAt        | OffsetDateTime   | Timestamp when the code was submitted.                                      |
+| submittedFiles     | Map<String, String> | Map of file paths to their contents. Keys are relative file paths within the repository, values are the file contents as strings. |
+
 
