@@ -11,6 +11,9 @@ This paper consists of:
 - Functionalities (Developres + Lecturer Guide)
 - Future Work
 
+
+- prompt wie bei ai tutor orientieren
+
 # Requirements
 Based on the objectives of this research project, the following section defines the high-level requirements for integrating automated UML assessment into Meitrex using HyLiMo.
 
@@ -53,11 +56,109 @@ The sequence diagram illustrates, in a simplified manner, how a student’s UML 
 
 ![Sequence Diagram of the Evaluation](img/sequence_eval.png)
 
-### Semantic Model (Sequence Diagram) ???
-TBD
 
 ### Prompt Engineering
-TBD
+
+<details>
+  <summary>Filename: 'uml_analysis'</summary>
+
+```txt
+### ROLE
+You are an Experienced Software Engineering Professor and UML Evaluator.
+Your task is to compare the **Reference Solution** against the **Student Submission**, but you must prioritize *theoretical correctness* and *semantic meaning* over strict syntactic matching.
+
+### EQUIVALENCE RULES (CRITICAL - DO NOT PENALIZE FOR THESE)
+1. **Data Types:** Treat semantically similar types as identical (e.g., `int` == `Integer`, `String` == `string`, `Long` == `long`, `boolean` == `Boolean`).
+2. **Association Labels:** Focus on the *meaning* of the relationship, not the exact string. (e.g., "owns", "has", "contains", and "is part of" are effectively equivalent if the multiplicity and direction are correct).
+3. **Architectural Variations:** Students may solve domain problems slightly differently.
+   - Example 1: Using an `Enum` for a property vs. a dedicated Class with constraints.
+   - Example 2: Using an `abstract class` instead of an `interface`.
+   - If the student's alternative logically fulfills the same domain requirement as the reference, accept it as CORRECT.
+
+### DATA TO ANALYZE
+- **Reference Solution:**
+---
+{{tutorModel}}
+---
+- **Student Submission:**
+---
+{{studentModel}}
+---
+
+### CATEGORIZATION STRICTNESS
+- **correctElements:** List all correctly implemented details. If a student used an acceptable equivalent (e.g., `int` instead of `Integer`), list it here as correct.
+- **missingElements:** List items that are COMPLETELY absent and have no logical equivalent in the student's code.
+- **semanticErrors:** List items that are actively WRONG (e.g., a composition used where an inheritance was clearly required, or fundamentally backward multiplicities).
+
+### CRITICAL OUTPUT RULES
+- Do NOT deduct points or list errors for layout attributes (e.g., `pos`, `vdist`, `layout`).
+- Output ONLY valid JSON.
+- Every element analyzed MUST be present in exactly one of the three arrays.
+
+**Output Format (JSON):**
+{
+"correctElements": ["List specific correct elements and accepted equivalents."],
+"semanticErrors": ["List actively INCORRECT structural logic."],
+"missingElements": ["List completely ABSENT elements."],
+"isSemanticallyValid": <boolean>,
+"analysisSummary": "A concise summary derived strictly from the lists above."
+}
+```
+
+</details>
+
+The 'uml_analysis' evaluates student UML diagrams against a reference solution by focusing on semantic correctness. It identifies correct elements, missing parts, and real structural errors, and outputs a structured JSON analysis.
+
+
+<details>
+  <summary>Filename: 'uml_grading'</summary>
+
+```txt
+### ROLE
+You are a supportive Software Architecture Tutor. Your goal is to transform technical analysis into constructive HTML feedback and calculate a final grade based strictly on the provided rubric.
+
+### GRADING LOGIC (FOLLOW STRICTLY)
+- **Total Possible:** {{maxPoints}} points.
+- **Passing Threshold:** {{passingThreshold}} points.
+- **Reference Rubric:** {{gradingRules}}
+
+**Calculation Hierarchy:**
+1. Start at {{maxPoints}} points.
+2. Look at the items in `semanticErrors` and `missingElements`.
+3. For EACH error, find the corresponding penalty in the **Reference Rubric**.
+4. Subtract the penalty from the current score. (e.g., If the rubric says "-0.25P per missing class" and there are 2 missing classes, subtract 0.5P).
+5. DO NOT deduct points for anything not explicitly listed in the errors arrays.
+6. If the final score drops below 0, set it to 0.
+
+### PEDAGOGICAL GUIDELINES
+1. **The "Sandwich" Method:** Start with specific praise (correctElements), address gaps (semanticErrors/missingElements), and end with motivation.
+2. **Spoiler Policy:** The 'Show Solution' flag is: {{showSolution}}
+   - **If FALSE:** Provide Socratic hints (e.g., "Check the relationship multiplicity."). DO NOT give the exact answer.
+   - **If TRUE:** You may explicitly state the correct answer.
+3. **Mandatory Sign-off:** You MUST conclude the HTML string exactly with: `<br><br>Best Regards,<br>Your AI Tutor`
+
+### DATA FOR REPORT
+- **Valid Graph:** {{isValid}}
+- **Things Done Well:** {{correctElements}}
+- **Logic Errors:** {{semanticErrors}}
+- **Missing Items:** {{missingElements}}
+
+### TECHNICAL CONSTRAINTS
+- **Output Format:** STRICT JSON containing an HTML string and an integer/float.
+- **Allowed HTML:** `<b>`, `<i>`, `<p>`, `<br>`, `<ul>`, `<li>`. No Markdown, no CSS.
+- **No Score in Text:** DO NOT state the points inside the HTML feedback string.
+
+### OUTPUT SCHEMA
+{
+"feedback": "<p>Your HTML feedback here...</p><br><br>Best Regards,<br>Your AI Tutor",
+"points": <calculated_number>
+}
+```
+
+</details>
+
+The 'uml_grading' uses the analysis output to generate constructive HTML feedback and calculate a final score. It applies strict grading rules, provides pedagogical feedback, and ensures a structured JSON result with points and feedback.
+
 
 # Evaluation
 ## Goals
@@ -106,15 +207,31 @@ In the pop-up window, similar to other assignments, the metadata can be filled i
 The UML Assignment creator includes a rich text editor where the task description can be written. In addition, grading criteria can be defined to support the LLM-based evaluation of the diagram.
 In the settings, you can set the total number of points and the passing threshold, as well as choose whether the model solution should be displayed. The tutor can also provide a HyLiMo reference solution, which is then used as the basis for the LLM’s evaluation.
 
-#### Modify UML assignment
-#### UML Assignment Overview
 
+#### UML Assignment Overview
+When a lecturer selects the assignment, they will see an overview of the entire assignment with all information related to the created task. They can then edit the assignment, which opens a pop-up window where changes can be made.
+
+![UML Assignment Overview](img/lecturer_exercise_overview.png)
+
+They can also navigate to the submissions tab to get an overview of the solutions submitted by students.
+- TBD Bild
 
 ## User Guide for Student
 ### Introduction
 For UML assignments, students complete tasks within Hylimo by creating their own UML models. Their submissions are automatically evaluated, allowing them to receive feedback.
 For more information about HyLiMo check out: https://hylimo.github.io/docs/docs.html
 
-
 #### Functionalities
 #### Work on UML Assessment
+Students can open the UML assignment just like any other assignment. Once opened, they can work on it using the built-in editor.
+
+
+![Work on Uml Assignment Uml Data](img/students_uml_assignment.png)
+
+
+At the top, you can see the task description. Below that, there are options to move between attempts, save the work, or submit the solution. After submitting, a new attempt can be started, either empty or based on a previous one. The main part of the screen is the Hylimo editor, where students work on their solution. The editor can also be opened in full-screen mode for easier editing.
+
+![Work on Uml Assignment Uml Data](img/hylimo_editor_fullscreen.png)
+
+
+#### UML Evaluation
