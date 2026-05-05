@@ -2,20 +2,18 @@
 
 This is a research project that aims to integrate automated UML assessment into Meitrex. The system will incorporate Hylimo to enable the creation and submission of UML assignments. Student solutions will then be automatically evaluated based on reference solutions provided by tutors.
 
-**What is HyLiMo?** Hylimo is a hybrid diagramming tool that enables users to create and edit diagrams, such as UML diagrams, by using a combination of textual code (a domain-specific language) and a graphical editor. Changes made to either the code or the visual representation are automatically synchronised, ensuring both views always remain consistent.
+**What is HyLiMo?** [Hylimo](https://hylimo.github.io/docs/docs.html) is a hybrid diagramming tool that enables users to create and edit diagrams, such as UML diagrams, by using a combination of textual code (a domain-specific language) and a graphical editor. Changes made to either the code or the visual representation are automatically synchronised, ensuring both views always remain consistent.
 This paper consists of:
 
-- *Requirements*
-- Architecture and Decisions
-- HyLiMo Integration
-- Automated UML Assessment
+- Requirements
+- System Design and Architecture
 - Evaluation
-- Functionalities (Developres + Lecturer Guide)
+- Functionalities
 - Future Work
 
 # Requirements
 
-Based on the objectives of this research project, the following section defines the high-level requirements for integrating automated UML assessment into Meitrex using HyLiMo.
+Based on the objectives of this research project, the following section defines the **high-level requirements** for integrating automated UML assessment into Meitrex using HyLiMo.
 
 - Creating a UML assessment (Task and Solution)
 - Working on a UML assessment
@@ -26,13 +24,36 @@ Based on the objectives of this research project, the following section defines 
 - View Submitted UML Assessment
 - Lecturer Views and Manages Student Submissions
 
-For Use Cases checkout: https://docs.google.com/document/d/1zKl2Vpk7k4WUOQumee5xeIibMjcerCa-Pp7XphvoagM/edit?tab=t.0
+With the help of the high-level requirements **use cases** were created. For example 'Create UML Assessment':
 
-# Architecture and Decisions
+| Field | Description |
+|---|---|
+| Use Case ID | UC-01 |
+| Name | Create UML Assessment |
+| Actors | Instructor (Primary), System (Secondary) |
+| Description | The Instructor defines a new UML assessment, including the task and the correct solution, for Students to complete. |
+| Preconditions | - The Instructor is authenticated and has assessment-creation privileges.<br>- A course exists for this assessment to be created inside of. |
+| Postconditions | - The new UML assessment is created and saved in the System. (FR-AC-05)<br>- The assessment is available for Students (or becomes available at a set date). |
+| Main Success Flow | 1. Instructor navigates to the “Create UML Assessment” page.<br>2. Instructor enters the assessment title and task description (FR-AC-02).<br>3. Instructor uses the embedded HyLiMo editor to create the model solution (FR-AC-03).<br>4. Instructor sets the assessment parameters (FR-AC-04).<br>5. Instructor clicks “Create”.<br>6. The system validates the inputs, saves the assessment and model solution, and makes it available to Students. |
+| Extensions | **5a. Instructor clicks “Save as Draft”**:<br>- The system saves the assessment in an unpublished state, visible only to the Instructor. |
 
-## Systemarchitecture
+The **functional requirements** were then derived from the use cases for example 'Assessment Creation':
 
-Show MEITREX + HyLiMo System Context --> Component Diagrams
+**FR-AC: Assessment Creation**
+
+- **FR-AC-01:** The system shall provide an interface for an instructor to create a new UML assessment.  
+- **FR-AC-02:** The system shall allow the instructor to input a task description.  
+- **FR-AC-03:** The system shall provide a HyLiMo editor for the instructor to create an official model solution.  
+- **FR-AC-04:** The system shall allow the instructor to configure assessment parameters:
+  - Skill type  
+  - Solution visibility with threshold  
+- **FR-AC-05:** The system shall save assessment parameters and the created solution diagram.
+
+
+*Note: For all use cases and functional requirements check out: [Use cases and functional requirements](https://docs.google.com/document/d/1zKl2Vpk7k4WUOQumee5xeIibMjcerCa-Pp7XphvoagM/edit?tab=t.0
+).*
+
+# System Design and Architecture
 
 ## Domain Model
 The diagram shows the domain model for the UML assignment. An UmlExercise is the task created by the tutor. For each exercise, a student has a UmlStudentSubmission, which contains all their attempts. Each submission can include multiple solutions (UmlStudentSolution). Every solution contains a UML diagram and can receive feedback with points and comments.
@@ -41,9 +62,7 @@ The diagram shows the domain model for the UML assignment. An UmlExercise is the
 
 ## HyLiMo Integration
 
-One of the main tasks was the integration of HyLiMo into MEITREX. First, all required components had to be identified. The needed HyLiMo code was originally built using Vite. This code served as the basis for the migration into our Next.js (React) project. As part of this process, the application had to be adapted and converted from the Vite setup to the Next.js architecture.
-
-- TBD: HyLiMo Architektur Diagram
+One of the main tasks was the integration of HyLiMo into MEITREX. With the support of the HyLiMo author and the analysis of available resources (e.g., a bachelor’s thesis), all relevant components were identified before implementation. The needed HyLiMo code was originally built using Vite. This code served as the basis for the migration into our Next.js (React) project. As part of this process, the application had to be adapted and converted from the Vite setup to the Next.js architecture.
 
 ## Automated UML Assessment
 
@@ -302,9 +321,9 @@ The evaluation is based on the following metrics:
 | 'Pure_Qwen (`qwen2.5-coder:32b`)' | 2.655 | -2.655 | 0.1929 | 161.9 |
 
 **Key Findings:**
--**Grading Strictness**: All tested models exhibited a negative bias, indicating that the automated system generally grades more strictly than human lecturers.
--**Consistency**: The 'Gold_Standard_Llama3.3' provided the most consistent results, demonstrated by the lowest average variance of 0.1052.
--**Efficiency**: The 'Speed_Demon_Llama3.1' outperformed all other configurations in speed, completing the evaluation in an average of 16.2 seconds, approximately 17 times faster than the Gold Standard.
+- **Grading Strictness**: All tested models exhibited a negative bias, indicating that the automated system generally grades more strictly than human lecturers.
+- **Consistency**: The 'Gold_Standard_Llama3.3' provided the most consistent results, demonstrated by the lowest average variance of 0.1052.
+- **Efficiency**: The 'Speed_Demon_Llama3.1' outperformed all other configurations in speed, completing the evaluation in an average of 16.2 seconds, approximately 17 times faster than the Gold Standard.
 
 #### Prompting Strategies
 
@@ -317,9 +336,9 @@ The evaluation is based on the following metrics:
 *\*Note: Total time for 'Task_added' was recorded as 0.0 in the evaluation logs due to some problems in with the DGX. These stats could not be gathered.*
 
 **Key Findings:**
--**Reference Solution Importance**: The 'Standard_Llama3.3' configuration, which compares the tutor reference directly to the student submission, yielded the lowest deviation from human grades (1.249).
--**Context Noise**: Adding the task description ('Task_added') increased both the absolute deviation (1.448) and the variance (0.7742), suggesting that additional context may introduce noise into the structural comparison logic.
--**Pure Task Logic**: The 'Llama3.3_Pure_Task' variant, which graded submissions without a reference solution, showed the highest consistency (lowest variance at 0.3719) but lower overall accuracy compared to the standard approach.
+- **Reference Solution Importance**: The 'Standard_Llama3.3' configuration, which compares the tutor reference directly to the student submission, yielded the lowest deviation from human grades (1.249).
+- **Context Noise**: Adding the task description ('Task_added') increased both the absolute deviation (1.448) and the variance (0.7742), suggesting that additional context may introduce noise into the structural comparison logic.
+- **Pure Task Logic**: The 'Llama3.3_Pure_Task' variant, which graded submissions without a reference solution, showed the highest consistency (lowest variance at 0.3719) but lower overall accuracy compared to the standard approach.
 
 ### Conclusion
 
@@ -333,8 +352,6 @@ The results indicate that automated UML assessment effectively replicates human 
 
 Tutors can create and provide model solutions for UML assignments within Hylimo. Student submissions are then automatically evaluated against the tutor solution.
 For more information about HyLiMo check out: https://hylimo.github.io/docs/docs.html
-
-##### Functionalities
 
 #### Create UML assignment
 
@@ -360,7 +377,13 @@ When a lecturer selects the assignment, they will see an overview of the entire 
 ![UML Assignment Overview](img/lecturer_exercise_overview.png)
 
 They can also navigate to the submissions tab to get an overview of the solutions submitted by students.
-- TBD Bild
+
+![Submission Overview](img/submission_overview.png.png)
+
+Lecturer can also inspect the student solution to see their evaluation and solution.
+
+![Inspect Student Solution](img/inspect_submission.png)
+
 
 ### User Guide for Student
 
@@ -369,7 +392,6 @@ They can also navigate to the submissions tab to get an overview of the solution
 For UML assignments, students complete tasks within Hylimo by creating their own UML models. Their submissions are automatically evaluated, allowing them to receive feedback.
 For more information about HyLiMo check out: <https://hylimo.github.io/docs/docs.html>
 
-##### Functionalities
 
 #### Work on UML Assessment
 
@@ -382,3 +404,6 @@ At the top, you can see the task description. Below that, there are options to m
 ![Work on Uml Assignment Uml Data](img/hylimo_editor_fullscreen.png)
 
 #### UML Evaluation
+After submission, the solution is evaluated by the system. The system provides feedback. Evaluated submissions cannot be edited. 
+
+![Evaluation of UML Assigmnet](img/eval_uml_assignment.png)
