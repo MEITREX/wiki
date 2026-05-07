@@ -378,7 +378,7 @@ When a lecturer selects the assignment, they will see an overview of the entire 
 
 They can also navigate to the submissions tab to get an overview of the solutions submitted by students.
 
-![Submission Overview](img/submission_overview.png.png)
+![Submission Overview](img/submission_overview.png)
 
 Lecturer can also inspect the student solution to see their evaluation and solution.
 
