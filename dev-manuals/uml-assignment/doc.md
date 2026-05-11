@@ -321,6 +321,7 @@ The evaluation is based on the following metrics:
 | 'Pure_Qwen (`qwen2.5-coder:32b`)' | 2.655 | -2.655 | 0.1929 | 161.9 |
 
 **Key Findings:**
+
 - **Grading Strictness**: All tested models exhibited a negative bias, indicating that the automated system generally grades more strictly than human lecturers.
 - **Consistency**: The 'Gold_Standard_Llama3.3' provided the most consistent results, demonstrated by the lowest average variance of 0.1052.
 - **Efficiency**: The 'Speed_Demon_Llama3.1' outperformed all other configurations in speed, completing the evaluation in an average of 16.2 seconds, approximately 17 times faster than the Gold Standard.
@@ -336,6 +337,7 @@ The evaluation is based on the following metrics:
 *\*Note: Total time for 'Task_added' was recorded as 0.0 in the evaluation logs due to some problems in with the DGX. These stats could not be gathered.*
 
 **Key Findings:**
+
 - **Reference Solution Importance**: The 'Standard_Llama3.3' configuration, which compares the tutor reference directly to the student submission, yielded the lowest deviation from human grades (1.249).
 - **Context Noise**: Adding the task description ('Task_added') increased both the absolute deviation (1.448) and the variance (0.7742), suggesting that additional context may introduce noise into the structural comparison logic.
 - **Pure Task Logic**: The 'Llama3.3_Pure_Task' variant, which graded submissions without a reference solution, showed the highest consistency (lowest variance at 0.3719) but lower overall accuracy compared to the standard approach.
