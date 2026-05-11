@@ -49,7 +49,6 @@ The **functional requirements** were then derived from the use cases for example
   - Solution visibility with threshold  
 - **FR-AC-05:** The system shall save assessment parameters and the created solution diagram.
 
-
 *Note: For all use cases and functional requirements check out: [Use cases and functional requirements](https://docs.google.com/document/d/1zKl2Vpk7k4WUOQumee5xeIibMjcerCa-Pp7XphvoagM/edit?tab=t.0
 ).*
 
@@ -68,7 +67,11 @@ One of the main tasks was the integration of HyLiMo into MEITREX. With the suppo
 
 The second major task was the automatic evaluation of UML diagrams based on the tutor’s solution.
 
-The sequence diagram illustrates, in a simplified manner, how a student’s UML solution is processed and evaluated across the system. First, the student creates and submits a UML diagram in the frontend, which then transforms the diagram code into a structured semantic model. This model is sent to the backend, where the UmlEvaluationService delegates the evaluation. The backend interacts with a large language model (LLM) in two steps: it first performs an analysis by comparing the student’s semantic model with the tutor’s reference model, and then conducts a grading step that generates points and textual feedback based on the analysis results. Finally, the computed feedback is returned through the backend to the frontend and presented to the student
+Evaluation starts when a student submits a UML solution in the frontend. The frontend sends a GraphQL mutation to store the submission with submit: true. The backend persists the solution, sets its submission timestamp, creates an evaluation job with status ENQUEUED, and returns immediately so the user does not wait for LLM processing.
+
+A background worker then handles queued jobs asynchronously. The queue service periodically selects the oldest ENQUEUED job, switches it to PROCESSING, and executes evaluation in a separate async step. The evaluation service performs two consecutive LLM calls: first, semantic analysis comparing the student’s semantic model with the tutor reference model; second, grading based on the analysis result, grading rules, and scoring thresholds. The generated feedback text and points are stored as UmlFeedback for the submitted solution.
+
+After persistence, the job state is finalized as DONE; if an exception occurs, it is finalized as FAILED and the error message is recorded. In both success and failure paths, a notification event is published via Dapr so users can be informed proactively. While processing runs in the background, the frontend can repeatedly query evaluationStatus over GraphQL and display the current state (ENQUEUED, PROCESSING, DONE, FAILED) until final feedback becomes available.
 
 ![Sequence Diagram of the Evaluation](img/sequence_eval.png)
 
