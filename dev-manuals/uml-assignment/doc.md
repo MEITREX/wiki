@@ -9,7 +9,7 @@ This paper consists of:
 - System Design and Architecture
 - Evaluation
 - Functionalities
-- Future Work
+- Future Improvements
 
 # Requirements
 
@@ -196,7 +196,7 @@ Thus only five different configurations could be evaluated. To ensure the reliab
 
 #### Evaluation of Prompting Strategies
 
-Following the model comparison, three prompt variations were tested specifically using the model taht achieved the best variance in the baseline test to assess the impact of task context on grading accuracy.
+Following the model comparison, three prompt variations were tested specifically using the model that achieved the best variance in the baseline test to assess the impact of task context on grading accuracy.
 Here we compared three different prompt strategies against each other for the analysis part of the evaluation:
 
 1. Standard: The same prompt as in the previous baseline test. This compares the semantic model of student against the model of the tutor solution
