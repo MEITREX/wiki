@@ -1,0 +1,7 @@
+Uml Assignment
+============
+
+.. toctree::
+   :glob:
+
+   *

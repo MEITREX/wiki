@@ -16,4 +16,5 @@ Developer Manuals
    ./scalability-testing/index
    ./services/index
    ./settings/index
+   ./uml-assignment/index
    
