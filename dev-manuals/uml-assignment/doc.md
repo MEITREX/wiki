@@ -412,3 +412,19 @@ At the top, you can see the task description. Below that, there are options to m
 After submission, the solution is evaluated by the system. The system provides feedback. Evaluated submissions cannot be edited. 
 
 ![Evaluation of UML Assigmnet](img/eval_uml_assignment.png)
+
+# Future Improvements
+
+Although the current integration successfully demonstrates the potential of automated UML assessment, there are several areas that could be improved to enhance the system's accuracy and user experience.
+
+### Aligning with Human Grading
+Our evaluation revealed that the automated system currently grades slightly more strictly than human tutors. A key future objective is to adjust the grading logic so that the system evaluates submissions in a more natural way, reflecting the judgement and natural leniency of a human instructor more closely.
+
+### Step-by-Step Evaluation
+Our tests showed that providing the system with too much context at once, such as combining the reference solution and the complete task description, can introduce noise and reduce the accuracy of the assessment. To improve the quality of feedback overall, future iterations can split the evaluation process into distinct, manageable steps. This will allow the AI to process information more effectively and avoid becoming overwhelmed.
+
+### Learning from Past Submissions
+Although the current implementation uses general-purpose AI models, there is significant potential in tailoring the system to this specific domain. Training the AI on historical UML submissions and prior tutor feedback could make the system more consistent and better able to assess student solutions.
+
+### Visual Feedback in the Editor
+Currently, students primarily receive their evaluation in text format. It would be a valuable enhancement to integrate this feedback directly into the diagram's visual representation. By automatically highlighting incorrect or missing elements within the graphical HyLiMo editor, students could identify mistakes and structural issues much more easily.
