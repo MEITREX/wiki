@@ -349,6 +349,14 @@ The evaluation is based on the following metrics:
 
 The results indicate that automated UML assessment effectively replicates human grading patterns. For real-time feedback within the HyLiMo editor, high-speed models such as Llama 3.1 are optimal. For final summative assessment, `llama3.3:70b` combined with the 'Standard' prompt strategy provides the most reliable results.
 
+*UPDATE:* Due to a change from ollama to Llama swap different models have been downloaded unto the DGx.
+In the current version (May 18th 2026) the model `qwen3-coder-80B-A10B` is used for both analysis and grading.
+In the production setting it can always be overwritten by the `OLLAMA_MODEL` environmental variable.
+
+*IMPORTANT:* Sicne the LLM calls use Llama on the DGX now the requests need an API Key to work.
+Locally you can create a `.env` file similar to the `.env.example`, while in production you need to add the API Key as the `OLLAMA_API_KEY` environmental variable.
+To get the API Key you need to ask your supervisor (most likely Niklas).
+
 ## Functionalities
 
 ### User Guide for Lecturer
@@ -356,7 +364,7 @@ The results indicate that automated UML assessment effectively replicates human 
 #### Introduction
 
 Tutors can create and provide model solutions for UML assignments within Hylimo. Student submissions are then automatically evaluated against the tutor solution.
-For more information about HyLiMo check out: https://hylimo.github.io/docs/docs.html
+For more information about HyLiMo check out: <https://hylimo.github.io/docs/docs.html>
 
 #### Create UML assignment
 
@@ -389,14 +397,12 @@ Lecturer can also inspect the student solution to see their evaluation and solut
 
 ![Inspect Student Solution](img/inspect_submission.png)
 
-
 ### User Guide for Student
 
 #### Introduction
 
 For UML assignments, students complete tasks within Hylimo by creating their own UML models. Their submissions are automatically evaluated, allowing them to receive feedback.
 For more information about HyLiMo check out: <https://hylimo.github.io/docs/docs.html>
-
 
 #### Work on UML Assessment
 
@@ -409,22 +415,27 @@ At the top, you can see the task description. Below that, there are options to m
 ![Work on Uml Assignment Uml Data](img/hylimo_editor_fullscreen.png)
 
 #### UML Evaluation
-After submission, the solution is evaluated by the system. The system provides feedback. Evaluated submissions cannot be edited. 
+
+After submission, the solution is evaluated by the system. The system provides feedback. Evaluated submissions cannot be edited.
 
 ![Evaluation of UML Assigmnet](img/eval_uml_assignment.png)
 
-# Future Improvements
+## Future Improvements
 
 Although the current integration successfully demonstrates the potential of automated UML assessment, there are several areas that could be improved to enhance the system's accuracy and user experience.
 
 ### Aligning with Human Grading
+
 Our evaluation revealed that the automated system currently grades slightly more strictly than human tutors. A key future objective is to adjust the grading logic so that the system evaluates submissions in a more natural way, reflecting the judgement and natural leniency of a human instructor more closely.
 
 ### Step-by-Step Evaluation
+
 Our tests showed that providing the system with too much context at once, such as combining the reference solution and the complete task description, can introduce noise and reduce the accuracy of the assessment. To improve the quality of feedback overall, future iterations can split the evaluation process into distinct, manageable steps. This will allow the AI to process information more effectively and avoid becoming overwhelmed.
 
 ### Learning from Past Submissions
+
 Although the current implementation uses general-purpose AI models, there is significant potential in tailoring the system to this specific domain. Training the AI on historical UML submissions and prior tutor feedback could make the system more consistent and better able to assess student solutions.
 
 ### Visual Feedback in the Editor
+
 Currently, students primarily receive their evaluation in text format. It would be a valuable enhancement to integrate this feedback directly into the diagram's visual representation. By automatically highlighting incorrect or missing elements within the graphical HyLiMo editor, students could identify mistakes and structural issues much more easily.
